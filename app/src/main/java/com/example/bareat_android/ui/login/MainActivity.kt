@@ -1,12 +1,119 @@
 package com.example.bareat_android.ui.login
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.WindowManager
+import androidx.navigation.NavDirections
 import com.example.bareat_android.R
+import com.example.bareat_android.databinding.ActivityMainBinding
+import com.example.bareat_android.setup.extensions.gone
+import com.example.bareat_android.setup.extensions.visible
+import com.example.bareat_android.ui.base.BaseActivity
 
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+class MainActivity : BaseActivity<ActivityMainBinding>() {
+
+    companion object {
+        @JvmStatic
+        fun intent(context: Context) = Intent(context, MainActivity::class.java)
     }
+
+    private var isInsideBottomNav = true
+
+    override fun initializeBinding(): ActivityMainBinding {
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        return binding
+    }
+
+    override fun initView() {
+
+        with (binding) {
+
+            val menu = bottomNavigationView.menu
+            val homeIcon = menu.findItem(R.id.homeFragment)
+            val searchIcon = menu.findItem(R.id.searchFragment)
+            val userIcon = menu.findItem(R.id.profileFragment)
+
+            bottomNavigationView.itemIconTintList = null
+
+            bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+                when (item.itemId) {
+                    R.id.homeFragment -> {
+                        homeIcon.setIcon(R.drawable.ic_home)
+                        searchIcon.setIcon(R.drawable.ic_search_inactive)
+                        userIcon.setIcon(R.drawable.ic_user_inactive)
+                        true
+                    }
+
+                    R.id.searchFragment -> {
+                        homeIcon.setIcon(R.drawable.ic_home_inactive)
+                        searchIcon.setIcon(R.drawable.ic_search)
+                        userIcon.setIcon(R.drawable.ic_user_inactive)
+                        true
+                    }
+
+                    R.id.profileFragment -> {
+                        homeIcon.setIcon(R.drawable.ic_home_inactive)
+                        searchIcon.setIcon(R.drawable.ic_search_inactive)
+                        userIcon.setIcon(R.drawable.ic_user)
+                        true
+                    }
+                    else -> super.onContextItemSelected(item)
+                }
+            }
+
+            navController?.addOnDestinationChangedListener { _, destination, _ ->
+                when (destination.id) {
+                    R.id.homeFragment -> {
+                        showNavigationBottomMenu()
+                        isInsideBottomNav = true
+                        homeIcon.setIcon(R.drawable.ic_home)
+                        searchIcon.setIcon(R.drawable.ic_search_inactive)
+                        userIcon.setIcon(R.drawable.ic_user_inactive)
+                    }
+                    R.id.searchFragment -> {
+                        showNavigationBottomMenu()
+                        isInsideBottomNav = true
+                    }
+                    R.id.profileFragment -> {
+                        showNavigationBottomMenu()
+                        isInsideBottomNav = true
+                    }
+                    else -> {
+                        hideNavigationBottomMenu()
+                        isInsideBottomNav = false
+                    }
+                }
+            }
+
+        }
+    }
+
+    fun hideNavigationBottomMenu() {
+        binding.bottomNavigationView.gone()
+    }
+
+    private fun showNavigationBottomMenu() {
+        binding.bottomNavigationView.visible()
+    }
+
+    fun provideToolbar() = binding.bareatToolbar
+
+    private fun navigateToFragment(action: NavDirections) {
+        navController?.navigate(action)
+    }
+
+    fun hideLoading() {
+        binding.progressBar.gone()
+    }
+
+    fun showLoading() {
+        binding.progressBar.visible()
+    }
+
+    override fun onBackPressed() {
+        if (isInsideBottomNav) finish() else super.onBackPressed()
+    }
+
 }

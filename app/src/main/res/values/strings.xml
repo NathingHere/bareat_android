@@ -1,3 +1,19 @@
 <resources>
-    <string name="app_name">bareat_android</string>
+    <string name="app_name">BarEat</string>
+    <string name="section_home">Home</string>
+    <string name="section_search">Buscar</string>
+    <string name="section_profile">Perfil</string>
+    <string name="done_button">Siguiente</string>
+    <string name="cancel_button">Cancelar</string>
+    <string name="popularity">Más popular</string>
+    <string name="rated">Mejor valorado</string>
+    <string name="alphabetically">Orden alfabético</string>
+    <string name="enter">Entrar</string>
+    <string name="register">Regístrate</string>
+    <string name="password">Contraseña*</string>
+    <string name="repeat_password">Repetir contraseña</string>
+    <string name="email">Email*</string>
+    <string name="name">Nombre*</string>
+
+
 </resources>

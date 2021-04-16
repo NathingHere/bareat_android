@@ -1,6 +1,6 @@
 package com.example.domain.client
 
-interface MyClient {
+interface BareatClient {
 
     companion object {
         const val BASE_URL = "URLAPP"
