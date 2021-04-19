@@ -8,15 +8,38 @@
         android:id="@+id/onBoardingFragment"
         android:name="com.example.bareat_android.ui.onboarding.OnBoardingFragment"
         android:label="fragment_onboarding"
-        tools:layout="@layout/fragment_onboarding" />
+        tools:layout="@layout/fragment_onboarding" >
+        <action
+            android:id="@+id/action_onBoardingFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_onBoardingFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+    </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.bareat_android.ui.login.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_onBoardingFragment"
+            app:destination="@id/onBoardingFragment" />
+    </fragment>
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.example.bareat_android.ui.register.RegisterFragment"
         android:label="fragment_register"
-        tools:layout="@layout/fragment_register" />
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_registerFragment_to_onBoardingFragment"
+            app:destination="@id/onBoardingFragment" />
+        <action
+            android:id="@+id/action_registerFragment_to_finishRegisterFragment"
+            app:destination="@id/finishRegisterFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/finishRegisterFragment"
+        android:name="com.example.bareat_android.ui.register.FinishRegisterFragment"
+        android:label="fragment_finish_register"
+        tools:layout="@layout/fragment_finish_register" />
 </navigation>

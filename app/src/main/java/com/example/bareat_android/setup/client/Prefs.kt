@@ -6,6 +6,7 @@ class Prefs(private val sharedPrefs: SharedPreferences){
 
     companion object {
         const val TOKEN = "TOKEN"
+        const val FILTER = "FILTER"
     }
 
     var token: String?
