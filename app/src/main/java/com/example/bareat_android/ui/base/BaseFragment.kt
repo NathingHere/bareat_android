@@ -14,7 +14,6 @@ import androidx.navigation.findNavController
 import androidx.viewbinding.ViewBinding
 import com.example.bareat_android.R
 import com.example.bareat_android.setup.client.Prefs
-import com.example.bareat_android.ui.customview.BareatToolbar
 import com.example.bareat_android.ui.login.MainActivity
 import com.google.android.material.snackbar.Snackbar
 import org.koin.android.ext.android.inject

@@ -2,15 +2,15 @@ package com.example.bareat_android.ui.login
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.view.WindowManager
 import androidx.navigation.NavDirections
 import com.example.bareat_android.R
 import com.example.bareat_android.databinding.ActivityMainBinding
 import com.example.bareat_android.setup.extensions.gone
 import com.example.bareat_android.setup.extensions.visible
 import com.example.bareat_android.ui.base.BaseActivity
+import com.example.bareat_android.ui.profile.ProfileFragmentDirections.Companion.routeToSearch
+import com.example.bareat_android.ui.search.SearchFragmentDirections.Companion.routeToHome
+import com.example.bareat_android.ui.search.SearchFragmentDirections.Companion.routeToProfile
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
@@ -40,6 +40,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             bottomNavigationView.setOnNavigationItemSelectedListener { item ->
                 when (item.itemId) {
                     R.id.homeFragment -> {
+                        navigateToFragment(routeToHome())
                         homeIcon.setIcon(R.drawable.ic_home)
                         searchIcon.setIcon(R.drawable.ic_search_inactive)
                         userIcon.setIcon(R.drawable.ic_user_inactive)
@@ -47,6 +48,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                     }
 
                     R.id.searchFragment -> {
+                        navigateToFragment(routeToSearch())
                         homeIcon.setIcon(R.drawable.ic_home_inactive)
                         searchIcon.setIcon(R.drawable.ic_search)
                         userIcon.setIcon(R.drawable.ic_user_inactive)
@@ -54,6 +56,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                     }
 
                     R.id.profileFragment -> {
+                        navigateToFragment(routeToProfile())
                         homeIcon.setIcon(R.drawable.ic_home_inactive)
                         searchIcon.setIcon(R.drawable.ic_search_inactive)
                         userIcon.setIcon(R.drawable.ic_user)

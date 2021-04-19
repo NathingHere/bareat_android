@@ -43,7 +43,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bareatToolbar"
         app:navGraph="@navigation/nav_graph"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_home" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
