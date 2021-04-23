@@ -30,6 +30,17 @@
 
     <!--MAIN SCREEN-->
     <string name="search_hint">Nombre del restaurante</string>
-
+    <string name="profile_book">Mis reservas</string>
+    <string name="profile_review_restaurant">Reseñas de restaurantes</string>
+    <string name="profile_review_dish">Reseñas de platos</string>
+    <string name="see_all_f">Ver todas</string>
+    <string name="see_all_m">Ver todos</string>
+    <string name="tel_btn">Teléfono</string>
+    <string name="email_btn">Email</string>
+    <string name="dishes">Platos</string>
+    <string name="reviews">Reseñas</string>
+    <string name="book">Reservar</string>
+    <string name="date">Fecha</string>
+    <string name="time">Hora</string>
 
 </resources>

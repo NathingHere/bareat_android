@@ -18,7 +18,7 @@
             android:layout_marginTop="24dp"
             android:text="@string/popularity"
             android:textColor="@color/black"
-            android:textSize="42sp"
+            android:textSize="36sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

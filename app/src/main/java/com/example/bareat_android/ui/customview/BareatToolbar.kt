@@ -20,6 +20,7 @@ class BareatToolbar @JvmOverloads constructor(
     sealed class ToolbarItemMenu {
         object EmptyItem : ToolbarItemMenu()
         object HomeItem : ToolbarItemMenu()
+        object ProfileItem : ToolbarItemMenu()
     }
 
     init {
@@ -31,7 +32,7 @@ class BareatToolbar @JvmOverloads constructor(
         when (itemMenu) {
             ToolbarItemMenu.EmptyItem -> setToolbarMenu(R.menu.empty_menu)
             ToolbarItemMenu.HomeItem -> setToolbarMenu(R.menu.home_menu)
-
+            ToolbarItemMenu.ProfileItem -> setToolbarMenu(R.menu.profile_menu)
         }
     }
 
@@ -50,7 +51,8 @@ class BareatToolbar @JvmOverloads constructor(
         onDoneClick: () -> Unit = {},
         onPopularityClick: () -> Unit = {},
         onRatedClick: () -> Unit = {},
-        onAlphabeticalClick: () -> Unit = {}
+        onAlphabeticalClick: () -> Unit = {},
+        onSettingsClick: () -> Unit = {}
     ) {
 
         setOnMenuItemClickListener {
@@ -65,6 +67,10 @@ class BareatToolbar @JvmOverloads constructor(
                 }
                 R.id.alphabetically -> {
                     onAlphabeticalClick.invoke()
+                    true
+                }
+                R.id.settings_item -> {
+                    onSettingsClick.invoke()
                     true
                 }
                 else -> true
