@@ -27,6 +27,12 @@
     <string name="birthdate">Fecha de nacimiento</string>
     <string name="finish">Finalizar</string>
     <string name="add">Publicidad</string>
+    <string name="error_fields_empty">Debes rellenar todos los campos.</string>
+    <string name="error_tyc">Debes aceptar los términos y condiciones.</string>
+    <string name="error_pass_not_valid">La contraseña debe tener más de 6 caracteres</string>
+    <string name="error_email">Tienes que introducir un email correcto</string>
+    <string name="error_pass_not_same">Las contraseña no coincide en ambos campos</string>
+
 
     <!--MAIN SCREEN-->
     <string name="search_hint">Nombre del restaurante</string>

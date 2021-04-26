@@ -10,6 +10,7 @@ import com.example.bareat_android.databinding.FragmentHomeBinding
 import com.example.bareat_android.setup.extensions.visible
 import com.example.bareat_android.ui.base.BaseFragment
 import com.example.bareat_android.ui.customview.BareatToolbar
+import com.example.bareat_android.ui.home.HomeFragmentDirections.Companion.routeToRestaurant
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
@@ -32,7 +33,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
     
     override fun initView() {
+        with(binding) {
 
+            tvFilter.setOnClickListener {
+                navController?.navigate(routeToRestaurant())
+            }
+
+        }
     }
 
 }

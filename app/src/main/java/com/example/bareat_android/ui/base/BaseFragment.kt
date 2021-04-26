@@ -1,10 +1,15 @@
 package com.example.bareat_android.ui.base
 
 import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -14,8 +19,11 @@ import androidx.navigation.findNavController
 import androidx.viewbinding.ViewBinding
 import com.example.bareat_android.R
 import com.example.bareat_android.setup.client.Prefs
+import com.example.bareat_android.setup.extensions.isEmail
+import com.example.bareat_android.setup.extensions.isValidPassword
 import com.example.bareat_android.ui.login.MainActivity
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.textfield.TextInputLayout
 import org.koin.android.ext.android.inject
 
 abstract class BaseFragment<BINDING : ViewBinding> : Fragment() {
@@ -79,6 +87,64 @@ abstract class BaseFragment<BINDING : ViewBinding> : Fragment() {
 
     protected fun showToast(message: String) {
         Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+    }
+
+    fun showProgressDialog() {
+        context?.let {
+            dialog = Dialog(it).apply {
+                requestWindowFeature(Window.FEATURE_NO_TITLE)
+                setCancelable(false)
+                setContentView(R.layout.dialog_progress)
+                window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                show()
+            }
+        }
+    }
+
+    fun addTextWatcherEmail(inputEmailLayout: TextInputLayout): TextWatcher {
+        return object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                if (s.toString().isEmail()) {
+                    inputEmailLayout.isErrorEnabled = false
+                }
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                if (s.toString().isEmail()) {
+                    inputEmailLayout.isErrorEnabled = false
+                }
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (!s.toString().isEmail()) {
+                    inputEmailLayout.isErrorEnabled = true
+                    inputEmailLayout.error = getString(R.string.error_email)
+                }
+            }
+        }
+    }
+
+    fun textWatcherPass(inputPasswordLayout: TextInputLayout): TextWatcher {
+        return object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                if (s.toString().isValidPassword()) {
+                    inputPasswordLayout.isErrorEnabled = false
+                }
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                if (s.toString().isValidPassword()) {
+                    inputPasswordLayout.isErrorEnabled = false
+                }
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (!s.toString().isValidPassword()) {
+                    inputPasswordLayout.isErrorEnabled = true
+                    inputPasswordLayout.error = getString(R.string.error_pass_not_valid)
+                }
+            }
+        }
     }
 
 }

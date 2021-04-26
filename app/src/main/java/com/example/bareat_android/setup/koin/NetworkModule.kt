@@ -1,5 +1,6 @@
 package com.example.bareat_android.setup.koin
 
+import com.example.bareat_android.BuildConfig
 import com.example.bareat_android.setup.client.BareatClientImpl
 import com.example.domain.client.BareatClient
 import com.example.domain.client.BareatService
@@ -25,7 +26,7 @@ val networkModule = module {
 }
 
 private fun provideRetrofit(): BareatService = Retrofit.Builder()
-        .baseUrl(BareatService.BASE_URL)
+        .baseUrl(BuildConfig.BASE_URL_BAREAT)
         .client(OkHttpClient())
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
