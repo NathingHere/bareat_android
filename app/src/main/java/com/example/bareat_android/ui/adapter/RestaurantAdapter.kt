@@ -26,7 +26,14 @@ class RestaurantAdapter(
                 tvName.text = item.name
                 if (item.isPremium == true) tvAdd.visible()
                 tvDetails.text = item.type
-                ratingBar.numStars = item.rating!!
+                item.rating?.let {
+                    ratingBar.rating = it
+                }
+
+                root.setOnClickListener {
+                    onClick.invoke(item)
+                }
+
             }
         }
 

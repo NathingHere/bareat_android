@@ -5,7 +5,11 @@ import android.content.Intent
 import android.util.Log
 import android.view.View
 import android.widget.EditText
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.bareat_android.setup.client.Prefs.Companion.FILTER
+import com.example.bareat_android.ui.base.BaseRecyclerView
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.util.regex.Pattern
@@ -56,12 +60,32 @@ private val VALID_EMAIL_ADDRESS_REGEX = Pattern.compile(
         Pattern.CASE_INSENSITIVE
 )
 
-private val VALID_PASS_REGEX = Pattern.compile(
-        "((?=.*\\d)(?=.*[a-z]).{6,20})"
-)
-
 private val VALID_PHONE_REGEX = Pattern.compile(
         "^(\\+{1}[02-9]{2}([0-9]{9}))|(\\+{1}[1]{1}([0-9]{9}))\$",
         Pattern.CASE_INSENSITIVE
 )
 
+// RecyclerView
+
+fun RecyclerView.initVerticalRecycler(
+    adapter: BaseRecyclerView<*, *>,
+    isGridLayout: Boolean = false,
+    spanCount: Int = 3,
+    block: (RecyclerView) -> Unit = {}
+) = run {
+    layoutManager =
+        if (isGridLayout) GridLayoutManager(context, spanCount) else LinearLayoutManager(context)
+    setHasFixedSize(true)
+    this.adapter = adapter
+    block.invoke(this)
+}
+
+fun RecyclerView.initHorizontalRecycler(
+    adapter: BaseRecyclerView<*, *>,
+    block: (RecyclerView) -> Unit = {}
+) = run {
+    layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+    setHasFixedSize(true)
+    this.adapter = adapter
+    block.invoke(this)
+}

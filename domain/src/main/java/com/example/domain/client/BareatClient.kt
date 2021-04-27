@@ -5,6 +5,6 @@ import com.example.data.Restaurant
 
 interface BareatClient {
 
-    suspend fun getRestaurantRatedList(): Either<String, List<Restaurant>>
+    suspend fun getRestaurantRatedList(isMock: Boolean = false): Either<String, List<Restaurant>>
 
 }

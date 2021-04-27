@@ -147,4 +147,8 @@ abstract class BaseFragment<BINDING : ViewBinding> : Fragment() {
         }
     }
 
+    fun hideProgressDialog() {
+        if (dialog != null) dialog?.dismiss()
+    }
+
 }

@@ -15,6 +15,6 @@ data class Restaurant (
     @SerializedName("") val longitude: Double?,
     @SerializedName("") val type: String?,
     @SerializedName("") val capacity: Int?,
-    @SerializedName("") val rating : Int?,
+    @SerializedName("") val rating : Float?,
     @SerializedName("") val isPremium : Boolean?
     ) : Parcelable, JSONConvertable

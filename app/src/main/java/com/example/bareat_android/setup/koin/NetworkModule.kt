@@ -2,8 +2,10 @@ package com.example.bareat_android.setup.koin
 
 import com.example.bareat_android.BuildConfig
 import com.example.bareat_android.setup.client.BareatClientImpl
+import com.example.bareat_android.setup.client.MockApiClient
 import com.example.domain.client.BareatClient
 import com.example.domain.client.BareatService
+import com.example.domain.client.MockClient
 import com.example.domain.error.NetworkController
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.OkHttpClient
@@ -19,7 +21,9 @@ val networkModule = module {
         provideRetrofit()
     }
 
-    single<BareatClient> { BareatClientImpl(get(), get()) }
+    single<BareatClient> { BareatClientImpl(get(), get(), get()) }
+
+    single<MockClient> { MockApiClient() }
 
     single { NetworkController() }
 
