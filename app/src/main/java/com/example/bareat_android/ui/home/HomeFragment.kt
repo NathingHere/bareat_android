@@ -26,12 +26,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             hideDoneCancelButtons()
             setBigToolbarTitle(getString(R.string.section_home))
             setOnMenuItemClick (
-                    onRatedClick = {},
-                    onPopularityClick = {},
-                    onAlphabeticalClick = {})
+                    onRatedClick = {ratedList()},
+                    onPopularityClick = {popularityList()},
+                    onAlphabeticalClick = {alphabeticalList()})
         }
     }
-    
+
     override fun initView() {
         with(binding) {
 
@@ -40,6 +40,18 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             }
 
         }
+    }
+
+    private fun alphabeticalList() {
+        binding.tvFilter.text = getString(R.string.alphabetically)
+    }
+
+    private fun popularityList() {
+        binding.tvFilter.text = getString(R.string.popularity)
+    }
+
+    private fun ratedList() {
+        binding.tvFilter.text = getString(R.string.rated)
     }
 
 }
