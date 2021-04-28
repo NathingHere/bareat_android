@@ -7,6 +7,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Restaurant (
+        @SerializedName("id") val id: Int,
     @SerializedName("") val name: String?,
     @SerializedName("") val desc: String?,
     @SerializedName("") val cover: String?,
@@ -16,5 +17,9 @@ data class Restaurant (
     @SerializedName("") val type: String?,
     @SerializedName("") val capacity: Int?,
     @SerializedName("") val rating : Float?,
-    @SerializedName("") val isPremium : Boolean?
-    ) : Parcelable, JSONConvertable
+    @SerializedName("") val isPremium : Boolean?,
+        @SerializedName("") val email : String?,
+        @SerializedName("") val phone : Int?,
+
+
+        ) : Parcelable, JSONConvertable

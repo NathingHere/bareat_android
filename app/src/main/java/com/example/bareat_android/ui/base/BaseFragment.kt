@@ -101,6 +101,10 @@ abstract class BaseFragment<BINDING : ViewBinding> : Fragment() {
         }
     }
 
+    fun hideProgressDialog() {
+        if (dialog != null) dialog?.dismiss()
+    }
+
     fun addTextWatcherEmail(inputEmailLayout: TextInputLayout): TextWatcher {
         return object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
@@ -145,10 +149,6 @@ abstract class BaseFragment<BINDING : ViewBinding> : Fragment() {
                 }
             }
         }
-    }
-
-    fun hideProgressDialog() {
-        if (dialog != null) dialog?.dismiss()
     }
 
 }

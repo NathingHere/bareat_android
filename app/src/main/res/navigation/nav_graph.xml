@@ -62,5 +62,9 @@
         android:id="@+id/restaurantFragment"
         android:name="com.example.bareat_android.ui.restaurant.RestaurantFragment"
         android:label="fragment_restaurant"
-        tools:layout="@layout/fragment_restaurant" />
+        tools:layout="@layout/fragment_restaurant" >
+        <argument
+            android:name="currentRestaurant"
+            app:argType="com.example.data.Restaurant" />
+    </fragment>
 </navigation>

@@ -49,10 +49,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
         with(binding) {
 
-            tvFilter.setOnClickListener {
-                navController?.navigate(routeToRestaurant())
-            }
-
             restaurantAdapter = RestaurantAdapter(layoutInflater = layoutInflater) {
                 onRestaurantClick(it)
             }
@@ -77,17 +73,23 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     private fun menageRestaurantState(state: HomeViewModel.RestaurantState) {
         hideProgressDialog()
         when (state) {
-            is HomeViewModel.RestaurantState.SUCCESS -> restaurantAdapter.updateList(state.restaurantList)
+            is HomeViewModel.RestaurantState.SUCCESS -> {
+                restaurantList = state.restaurantList
+                restaurantAdapter.updateList(state.restaurantList)
+            }
             is HomeViewModel.RestaurantState.ERROR -> showToast(state.errorMessage)
         }
     }
 
     private fun onRestaurantClick(restaurant: Restaurant) {
-        navController?.navigate(routeToRestaurant())
+        val action = HomeFragmentDirections
+        navController?.navigate(routeToRestaurant(restaurant))
     }
 
     private fun alphabeticalList() {
         binding.tvFilter.text = getString(R.string.alphabetically)
+        val sortedList = restaurantList.sortedBy { it.name }
+        restaurantAdapter.updateList(sortedList)
     }
 
     private fun popularityList() {
@@ -96,6 +98,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     private fun ratedList() {
         binding.tvFilter.text = getString(R.string.rated)
+        val sortedList = restaurantList.sortedByDescending { it.rating }
+        restaurantAdapter.updateList(sortedList)
     }
 
 }

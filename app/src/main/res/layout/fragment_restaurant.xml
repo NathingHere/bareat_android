@@ -67,23 +67,22 @@
                 android:id="@+id/rvReviews"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btnReviews" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnEmail"
-                android:layout_width="175dp"
+                android:layout_width="0dp"
                 android:layout_height="40dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/btn_gradient"
                 android:drawableStart="@android:drawable/ic_dialog_email"
                 android:letterSpacing="0"
-                android:paddingStart="40dp"
-                android:paddingEnd="40dp"
+                android:paddingStart="20dp"
                 android:text="@string/email_btn"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
@@ -96,14 +95,15 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnPhone"
-                android:layout_width="175dp"
+                android:layout_width="0dp"
                 android:layout_height="40dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
                 android:background="@drawable/btn_gradient"
                 android:drawableStart="@android:drawable/stat_sys_phone_call"
                 android:letterSpacing="0"
-                android:paddingStart="35dp"
-                android:paddingEnd="40dp"
+                android:paddingStart="20dp"
                 android:text="@string/tel_btn"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
@@ -143,6 +143,22 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/vpRestaurant"
                 tools:text="Restaurante Los Sentidos" />
+
+            <TextView
+                android:id="@+id/tvEmpty"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginTop="32dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@string/empty_comments"
+                android:textColor="@color/colorPrimary"
+                android:textSize="24sp"
+                android:textStyle="normal"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnReviews" />
 
             <RatingBar
                 android:id="@+id/ratingBar"
@@ -204,7 +220,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="48dp"
                 android:layout_marginEnd="16dp"
                 android:ellipsize="end"
                 android:maxLines="2"
@@ -222,9 +238,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView12" />
 

@@ -5,13 +5,13 @@ import androidx.lifecycle.MutableLiveData
 import com.example.bareat_android.ui.base.BaseViewModel
 import com.example.data.Restaurant
 import com.example.data.fold
-import com.example.domain.usecase.restaurant.GetRestaurantRatedListUseCase
+import com.example.domain.usecase.restaurant.GetRestaurantListUseCase
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class HomeViewModel(
-    private val getRestaurantRatedListUseCase: GetRestaurantRatedListUseCase
+    private val getRestaurantListUseCase: GetRestaurantListUseCase
 ) : BaseViewModel() {
 
     sealed class RestaurantState {
@@ -31,7 +31,7 @@ class HomeViewModel(
     private fun getRestaurantRatedList() {
         updateUI(ScreenState.LOADING)
         uiScope.launch {
-            val result = uiScope.async { withContext(ioContext) { getRestaurantRatedListUseCase.execute() } }
+            val result = uiScope.async { withContext(ioContext) { getRestaurantListUseCase.execute() } }
 
             result.await().fold(
                 { updateUI(ScreenState.RenderData(RestaurantState.ERROR(it))) },

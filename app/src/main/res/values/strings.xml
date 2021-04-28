@@ -49,5 +49,10 @@
     <string name="date">Fecha</string>
     <string name="time">Hora</string>
     <string name="book_number">Número de comensales</string>
+    <string name="price">%1$.2f€</string>
+    <string name="score">%1$.2f / 5</string>
+    <string name="send">Enviar</string>
+    <string name="comment">Comentario (opcional)</string>
+    <string name="empty_comments">No hay reseñas</string>
 
 </resources>

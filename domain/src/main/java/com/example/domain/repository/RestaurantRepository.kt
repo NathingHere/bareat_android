@@ -9,6 +9,6 @@ class RestaurantRepository(
     private val bareatClient: BareatClient
 ) {
 
-    suspend fun getRestaurantRatedList() : Either<String, List<Restaurant>> = bareatClient.getRestaurantRatedList(true)
+    suspend fun getRestaurantList() : Either<String, List<Restaurant>> = bareatClient.getRestaurantList(true)
 
 }

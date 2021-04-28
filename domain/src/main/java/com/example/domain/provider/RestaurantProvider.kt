@@ -8,6 +8,6 @@ class RestaurantProvider(
     private val restaurantRepository: RestaurantRepository
 ) {
 
-    suspend fun provideRestaurantRatedList(): Either<String, List<Restaurant>> = restaurantRepository.getRestaurantRatedList()
+    suspend fun provideRestaurantList(): Either<String, List<Restaurant>> = restaurantRepository.getRestaurantList()
 
 }
