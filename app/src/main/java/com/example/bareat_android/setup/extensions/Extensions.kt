@@ -1,14 +1,20 @@
 package com.example.bareat_android.setup.extensions
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.util.Log
 import android.view.View
+import android.view.Window
 import android.widget.EditText
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.bareat_android.R
 import com.example.bareat_android.setup.client.Prefs.Companion.FILTER
+import com.example.bareat_android.ui.base.BaseActivity
 import com.example.bareat_android.ui.base.BaseRecyclerView
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -89,3 +95,23 @@ fun RecyclerView.initHorizontalRecycler(
     this.adapter = adapter
     block.invoke(this)
 }
+
+//ACTIVITY
+fun BaseActivity<*>.showProgressDialog() {
+    hideProgressDialog()
+    Dialog(this).apply {
+        requestWindowFeature(Window.FEATURE_NO_TITLE)
+        setCancelable(false)
+        setContentView(R.layout.dialog_progress)
+        window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        show()
+        this@showProgressDialog.progressDialog = this
+    }
+}
+
+fun BaseActivity<*>.hideProgressDialog() {
+    this.progressDialog?.dismiss()
+}
+
+
+

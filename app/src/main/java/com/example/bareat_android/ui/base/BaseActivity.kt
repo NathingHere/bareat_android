@@ -25,10 +25,11 @@ import org.koin.android.ext.android.inject
 
 abstract class BaseActivity<BINDING : ViewBinding> : AppCompatActivity() {
 
+    var progressDialog: Dialog? = null
+
     protected lateinit var binding: BINDING
     protected val navController: NavController? by lazy { findNavController(R.id.fragment) }
     val prefs by inject<Prefs>()
-    private var dialog: Dialog? = null
 
     abstract fun initializeBinding(): BINDING
 
@@ -71,4 +72,5 @@ abstract class BaseActivity<BINDING : ViewBinding> : AppCompatActivity() {
             }
         }
     }
+
 }

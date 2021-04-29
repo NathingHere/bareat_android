@@ -1,4 +1,4 @@
-package com.example.bareat_android.ui.home
+package com.example.bareat_android.ui.search
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,8 +10,8 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class HomeViewModel(
-    private val getRestaurantListUseCase: GetRestaurantListUseCase
+class SearchViewModel(
+        private val restaurantListUseCase: GetRestaurantListUseCase
 ) : BaseViewModel() {
 
     sealed class RestaurantState {
@@ -31,11 +31,11 @@ class HomeViewModel(
     private fun getRestaurantList() {
         updateUI(ScreenState.LOADING)
         uiScope.launch {
-            val result = uiScope.async { withContext(ioContext) { getRestaurantListUseCase.execute() } }
+            val result = uiScope.async { withContext(ioContext) { restaurantListUseCase.execute() } }
 
             result.await().fold(
-                { updateUI(ScreenState.RenderData(RestaurantState.ERROR(it))) },
-                { updateUI(ScreenState.RenderData(RestaurantState.SUCCESS(it))) }
+                    { updateUI(ScreenState.RenderData(RestaurantState.ERROR(it))) },
+                    { updateUI(ScreenState.RenderData(RestaurantState.SUCCESS(it))) }
             )
         }
     }

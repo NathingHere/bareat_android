@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_settings"
+        android:icon="@drawable/ic_star"
+        android:orderInCategory="100"
+        android:title=""
+        app:showAsAction="always">
+
+        <menu>
+
+            <item
+                android:id="@+id/popularity"
+                android:title="@string/popularity" />
+
+            <item
+                android:id="@+id/best_rated"
+                android:title="@string/rated" />
+
+            <item
+                android:id="@+id/alphabetically"
+                android:title="@string/alphabetically" />
+
+        </menu>
+    </item>
+
+</menu>

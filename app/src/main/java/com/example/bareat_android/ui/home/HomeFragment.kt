@@ -32,7 +32,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override fun setToolbar() {
         provideToolbar().apply {
-            initToolbar(BareatToolbar.ToolbarItemMenu.HomeItem)
+            initToolbar(BareatToolbar.ToolbarItemMenu.HomeItemHot)
             visible()
             hideDoneCancelButtons()
             setBigToolbarTitle(getString(R.string.section_home))
@@ -53,9 +53,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 onRestaurantClick(it)
             }
 
-            rvRestaurants.initVerticalRecycler(restaurantAdapter){
-
-            }
+            rvRestaurants.initVerticalRecycler(restaurantAdapter)
         }
 
         homeViewModel.restaurantListData.observe(viewLifecycleOwner) { manageRestaurantScreenState(it) }
@@ -82,7 +80,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     private fun onRestaurantClick(restaurant: Restaurant) {
-        val action = HomeFragmentDirections
         navController?.navigate(routeToRestaurant(restaurant))
     }
 
@@ -90,16 +87,20 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         binding.tvFilter.text = getString(R.string.alphabetically)
         val sortedList = restaurantList.sortedBy { it.name }
         restaurantAdapter.updateList(sortedList)
+        provideToolbar().initToolbar(BareatToolbar.ToolbarItemMenu.HomeItemAlphabetically)
     }
 
     private fun popularityList() {
         binding.tvFilter.text = getString(R.string.popularity)
+        provideToolbar().initToolbar(BareatToolbar.ToolbarItemMenu.HomeItemHot)
     }
 
     private fun ratedList() {
         binding.tvFilter.text = getString(R.string.rated)
         val sortedList = restaurantList.sortedByDescending { it.rating }
         restaurantAdapter.updateList(sortedList)
+
+        provideToolbar().initToolbar(BareatToolbar.ToolbarItemMenu.HomeItemRated)
     }
 
 }

@@ -39,6 +39,9 @@ class RestaurantFragment : BaseFragment<FragmentRestaurantBinding>() {
 
     private lateinit var dialog: Dialog
 
+    private var isReviewFinish = false
+    private var isThisFinish = false
+
     override fun initializeBinding(): FragmentRestaurantBinding {
         binding = FragmentRestaurantBinding.inflate(layoutInflater)
         return binding
@@ -106,7 +109,7 @@ class RestaurantFragment : BaseFragment<FragmentRestaurantBinding>() {
 
     private fun manageReviewsScreenState(state: BaseViewModel.ScreenState<RestaurantViewModel.ReviewState>?) {
         when(state) {
-            BaseViewModel.ScreenState.LOADING -> {}
+            BaseViewModel.ScreenState.LOADING -> showProgressDialog()
             is BaseViewModel.ScreenState.RenderData -> {
                 manageReviewState(state.renderState)
             }
@@ -114,6 +117,8 @@ class RestaurantFragment : BaseFragment<FragmentRestaurantBinding>() {
     }
 
     private fun manageReviewState(state: RestaurantViewModel.ReviewState) {
+        isReviewFinish = true
+        isCallFinished()
         when(state) {
             RestaurantViewModel.ReviewState.Empty -> {
                 binding.tvEmpty.visible()
@@ -134,7 +139,8 @@ class RestaurantFragment : BaseFragment<FragmentRestaurantBinding>() {
     }
 
     private fun manageDishState(state: RestaurantViewModel.DishState) {
-        hideProgressDialog()
+        isThisFinish = true
+        isCallFinished()
         when(state){
             is RestaurantViewModel.DishState.SUCCESS -> dishListAdapter.updateList(state.dishList)
             is RestaurantViewModel.DishState.ERROR -> showToast(state.errorMessage)
@@ -220,6 +226,10 @@ class RestaurantFragment : BaseFragment<FragmentRestaurantBinding>() {
 
     private fun onDishClick(dish: Dish) {
         TODO("Not yet implemented")
+    }
+
+    private fun isCallFinished() {
+        if(isReviewFinish && isThisFinish) hideProgressDialog()
     }
 
 }

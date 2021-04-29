@@ -19,7 +19,9 @@ class BareatToolbar @JvmOverloads constructor(
 
     sealed class ToolbarItemMenu {
         object EmptyItem : ToolbarItemMenu()
-        object HomeItem : ToolbarItemMenu()
+        object HomeItemHot : ToolbarItemMenu()
+        object HomeItemRated : ToolbarItemMenu()
+        object HomeItemAlphabetically : ToolbarItemMenu()
         object ProfileItem : ToolbarItemMenu()
     }
 
@@ -31,7 +33,9 @@ class BareatToolbar @JvmOverloads constructor(
     fun initToolbar(itemMenu: ToolbarItemMenu) {
         when (itemMenu) {
             ToolbarItemMenu.EmptyItem -> setToolbarMenu(R.menu.empty_menu)
-            ToolbarItemMenu.HomeItem -> setToolbarMenu(R.menu.home_menu)
+            ToolbarItemMenu.HomeItemHot -> setToolbarMenu(R.menu.home_menu_hot)
+            ToolbarItemMenu.HomeItemRated -> setToolbarMenu(R.menu.home_menu_rated)
+            ToolbarItemMenu.HomeItemAlphabetically -> setToolbarMenu(R.menu.home_menu_alphabetically)
             ToolbarItemMenu.ProfileItem -> setToolbarMenu(R.menu.profile_menu)
         }
     }

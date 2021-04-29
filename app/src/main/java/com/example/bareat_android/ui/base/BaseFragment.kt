@@ -19,8 +19,10 @@ import androidx.navigation.findNavController
 import androidx.viewbinding.ViewBinding
 import com.example.bareat_android.R
 import com.example.bareat_android.setup.client.Prefs
+import com.example.bareat_android.setup.extensions.hideProgressDialog
 import com.example.bareat_android.setup.extensions.isEmail
 import com.example.bareat_android.setup.extensions.isValidPassword
+import com.example.bareat_android.setup.extensions.showProgressDialog
 import com.example.bareat_android.ui.login.MainActivity
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
@@ -90,19 +92,15 @@ abstract class BaseFragment<BINDING : ViewBinding> : Fragment() {
     }
 
     fun showProgressDialog() {
-        context?.let {
-            dialog = Dialog(it).apply {
-                requestWindowFeature(Window.FEATURE_NO_TITLE)
-                setCancelable(false)
-                setContentView(R.layout.dialog_progress)
-                window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                show()
-            }
+        if (activity != null) {
+            (activity as BaseActivity<*>).showProgressDialog()
         }
     }
 
     fun hideProgressDialog() {
-        if (dialog != null) dialog?.dismiss()
+        if (activity != null) {
+            (activity as BaseActivity<*>).hideProgressDialog()
+        }
     }
 
     fun addTextWatcherEmail(inputEmailLayout: TextInputLayout): TextWatcher {
