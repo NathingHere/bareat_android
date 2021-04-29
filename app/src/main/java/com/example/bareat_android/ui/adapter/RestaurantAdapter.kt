@@ -2,6 +2,8 @@ package com.example.bareat_android.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import coil.load
 import com.example.bareat_android.databinding.RestaurantItemviewBinding
 import com.example.bareat_android.setup.extensions.visible

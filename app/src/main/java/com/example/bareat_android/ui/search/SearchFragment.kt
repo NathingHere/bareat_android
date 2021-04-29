@@ -1,10 +1,10 @@
 package com.example.bareat_android.ui.search
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.app.ActionBar
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.Gravity
+import android.widget.SearchView
 import com.example.bareat_android.R
 import com.example.bareat_android.databinding.FragmentSearchBinding
 import com.example.bareat_android.setup.extensions.initVerticalRecycler
@@ -13,8 +13,6 @@ import com.example.bareat_android.ui.adapter.RestaurantAdapter
 import com.example.bareat_android.ui.base.BaseFragment
 import com.example.bareat_android.ui.base.BaseViewModel
 import com.example.bareat_android.ui.customview.BareatToolbar
-import com.example.bareat_android.ui.home.HomeFragmentDirections
-import com.example.bareat_android.ui.home.HomeViewModel
 import com.example.bareat_android.ui.search.SearchFragmentDirections.Companion.routeToRestaurant
 import com.example.data.Restaurant
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -54,6 +52,22 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
 
             rvRestaurants.initVerticalRecycler(restaurantAdapter)
 
+            search.addTextChangedListener(object : TextWatcher{
+
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+                }
+
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+                }
+
+                override fun afterTextChanged(p0: Editable?) {
+                    filterList(p0.toString())
+                }
+
+            })
+
         }
 
         searchViewModel.restaurantListData.observe(viewLifecycleOwner) { manageRestaurantScreenState(it) }
@@ -78,6 +92,23 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
             }
             is SearchViewModel.RestaurantState.ERROR -> showToast(state.errorMessage)
         }
+    }
+
+    private fun filterList(filterItem: String) {
+        val tempList = mutableListOf<Restaurant>()
+
+        for(row in restaurantList) {
+
+            if(filterItem in row.name.toString()) {
+
+                tempList += row
+
+            }
+
+            restaurantAdapter.updateList(tempList)
+
+        }
+
     }
 
     private fun onRestaurantClick(restaurant: Restaurant) {
