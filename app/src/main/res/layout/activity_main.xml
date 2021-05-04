@@ -10,9 +10,10 @@
     <com.example.bareat_android.ui.customview.BareatToolbar
         android:id="@+id/bareatToolbar"
         android:layout_width="match_parent"
-        android:layout_height="64dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/toolbar_gradient"
         android:elevation="0dp"
+        android:paddingTop="32dp"
         android:foregroundGravity="center"
         android:gravity="center"
         app:buttonGravity="center_vertical"

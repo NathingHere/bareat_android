@@ -5,7 +5,6 @@
     android:id="@+id/BareatToolbarCustom"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/toolbar_gradient"
     android:contentInsetStart="0dp"
     android:contentInsetLeft="0dp"
     android:contentInsetEnd="0dp"

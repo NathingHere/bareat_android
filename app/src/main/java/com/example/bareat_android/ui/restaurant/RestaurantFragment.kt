@@ -203,7 +203,6 @@ class RestaurantFragment : BaseFragment<FragmentRestaurantBinding>() {
                 setContentView(R.layout.dialog_rating)
 
                 with(binding) {
-                    //Mandar datos
                     commentYes.setOnClickListener { comment() }
                     commentNo.setOnClickListener { dismiss() }
                 }
