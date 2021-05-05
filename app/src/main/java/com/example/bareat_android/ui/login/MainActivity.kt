@@ -2,6 +2,7 @@ package com.example.bareat_android.ui.login
 
 import android.content.Context
 import android.content.Intent
+import androidx.core.view.updatePadding
 import androidx.navigation.NavDirections
 import com.example.bareat_android.R
 import com.example.bareat_android.databinding.ActivityMainBinding
@@ -28,7 +29,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun initView() {
 
-        with (binding) {
+        with(binding) {
+
+            bareatToolbar.updatePadding(top = getStatusBarHeight())
 
             val menu = bottomNavigationView.menu
             val homeIcon = menu.findItem(R.id.homeFragment)
@@ -92,6 +95,16 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         }
     }
+
+    fun getStatusBarHeight(): Int {
+        var result = 0
+        val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
+        if (resourceId > 0) {
+            result = resources.getDimensionPixelSize(resourceId)
+        }
+        return result
+    }
+
 
     fun hideNavigationBottomMenu() {
         binding.bottomNavigationView.gone()

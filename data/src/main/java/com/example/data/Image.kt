@@ -6,9 +6,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Review (
+data class Image (
         @SerializedName("id") val id: Int,
-        @SerializedName("") val name: String?,
-        @SerializedName("") val rating: Float?,
-        @SerializedName("") val comment: String?,
+        @SerializedName("ruta_imagen") val url: String?,
         ) : Parcelable, JSONConvertable

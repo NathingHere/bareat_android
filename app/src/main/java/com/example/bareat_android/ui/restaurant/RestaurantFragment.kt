@@ -5,9 +5,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
-import android.os.Bundle
 import android.view.*
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import coil.load
 import com.example.bareat_android.R
@@ -24,7 +22,7 @@ import com.example.bareat_android.ui.base.BaseViewHolder
 import com.example.bareat_android.ui.base.BaseViewModel
 import com.example.bareat_android.ui.customview.BareatToolbar
 import com.example.data.Dish
-import com.example.data.Review
+import com.example.data.ReviewRestaurant
 import kotlinx.android.synthetic.main.dialog_rating.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -123,7 +121,7 @@ class RestaurantFragment : BaseFragment<FragmentRestaurantBinding>() {
             RestaurantViewModel.ReviewState.Empty -> {
                 binding.tvEmpty.visible()
             }
-            is RestaurantViewModel.ReviewState.SUCCESS -> reviewListAdapter.updateList(state.reviewList)
+            is RestaurantViewModel.ReviewState.SUCCESS -> reviewListAdapter.updateList(state.reviewRestaurantList)
             is RestaurantViewModel.ReviewState.ERROR -> showToast(state.errorMessage)
         }
 
@@ -174,14 +172,14 @@ class RestaurantFragment : BaseFragment<FragmentRestaurantBinding>() {
 
     }
 
-    inner class ReviewListAdapter : BaseRecyclerView<Review, ReviewListAdapter.Holder>() {
+    inner class ReviewListAdapter : BaseRecyclerView<ReviewRestaurant, ReviewListAdapter.Holder>() {
 
         override fun getViewHolder(parent: ViewGroup, viewType: Int): ReviewListAdapter.Holder =
                 Holder(ReviewItemviewBinding.inflate(layoutInflater, parent, false))
 
-        inner class Holder(private val reviewItemviewBinding: ReviewItemviewBinding) : BaseViewHolder<Review>(reviewItemviewBinding) {
+        inner class Holder(private val reviewItemviewBinding: ReviewItemviewBinding) : BaseViewHolder<ReviewRestaurant>(reviewItemviewBinding) {
 
-            override fun bindData(item: Review) {
+            override fun bindData(item: ReviewRestaurant) {
                 with(reviewItemviewBinding) {
                     tvName.text = item.name
                     tvReview.text = item.comment

@@ -19,7 +19,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
         val countdownTimer = object : CountDownTimer(1500, 500) {
             override fun onFinish() {
                 when {
-                    prefs.token.isNullOrEmpty() -> launchActivity<OnBoardingActivity>(finish = true)
+                    prefs.token.isNullOrEmpty() -> launchActivity<MainActivity>(finish = true)
                     prefs.token?.isNotEmpty() == true -> launchActivity<MainActivity>(finish = true)
                 }
             }

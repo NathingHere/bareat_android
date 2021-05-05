@@ -9,7 +9,7 @@ class MockApiClient : MockClient {
 
     override suspend fun getDishList(id: Int): Either<String, List<Dish>> = value(mockDishList)
 
-    override suspend fun getCommentList(id: Int): Either<String, List<Review>> = value(mockReviewList)
+    override suspend fun getCommentList(id: Int): Either<String, List<ReviewRestaurant>> = value(mockReviewList)
 
 
 
@@ -39,12 +39,12 @@ class MockApiClient : MockClient {
             )
 
     private val mockReviewList = listOf(
-            Review(1, "Javier Lopez Jimenez", 4.43F, "asdjalikfj lajlkdfsh asdkljfh sdfsjfkg fsdgkjahlkjlsdfg kjdafhkj ldfh ksjdfjkh lsdfkhj sdfkjhl sdfjk hlsdfjkhl dsf"),
-            Review(2, "asd wadw ed aw dwa d awadwa daa da dwad",2.43F, "asdjalikfj lajlkdfsh asdkljfh sdfsjfkg fsdgkjahlkjlsdfg kjdafhkj ldfh ksjdfjkh lsdfkhj sdfkjhl sdfjk hlsdfjkhl dsf"),
-            Review(3, "asd wadw ed aw dwa d awadwa daa da dwad",1.43F, "asdjalikfj lajlkdfsh asdkljfh sdfsjfkg fsdgkjahlkjlsdfg kjdafhkj ldfh ksjdfjkh lsdfkhj sdfkjhl sdfjk hlsdfjkhl dsf"),
-            Review(4, "asd wadw ed aw dwa d awadwa daa da dwad",4F, "asdjalikfj lajlkdfsh asdkljfh sdfsjfkg fsdgkjahlkjlsdfg kjdafhkj ldfh ksjdfjkh lsdfkhj sdfkjhl sdfjk hlsdfjkhl dsf"),
-            Review(5, "asd wadw ed aw dwa d awadwa daa da dwad",0.43F, "asdjalikfj lajlkdfsh asdkljfh sdfsjfkg fsdgkjahlkjlsdfg kjdafhkj ldfh ksjdfjkh lsdfkhj sdfkjhl sdfjk hlsdfjkhl dsf"),
-            Review(6, "asd wadw ed aw dwa d awadwa daa da dwad",3.43F, "asdjalikfj lajlkdfsh asdkljfh sdfsjfkg fsdgkjahlkjlsdfg kjdafhkj ldfh ksjdfjkh lsdfkhj sdfkjhl sdfjk hlsdfjkhl dsf"),
+            ReviewRestaurant(1, "Javier Lopez Jimenez", 4.43F, "asdjalikfj lajlkdfsh asdkljfh sdfsjfkg fsdgkjahlkjlsdfg kjdafhkj ldfh ksjdfjkh lsdfkhj sdfkjhl sdfjk hlsdfjkhl dsf"),
+            ReviewRestaurant(2, "asd wadw ed aw dwa d awadwa daa da dwad",2.43F, "asdjalikfj lajlkdfsh asdkljfh sdfsjfkg fsdgkjahlkjlsdfg kjdafhkj ldfh ksjdfjkh lsdfkhj sdfkjhl sdfjk hlsdfjkhl dsf"),
+            ReviewRestaurant(3, "asd wadw ed aw dwa d awadwa daa da dwad",1.43F, "asdjalikfj lajlkdfsh asdkljfh sdfsjfkg fsdgkjahlkjlsdfg kjdafhkj ldfh ksjdfjkh lsdfkhj sdfkjhl sdfjk hlsdfjkhl dsf"),
+            ReviewRestaurant(4, "asd wadw ed aw dwa d awadwa daa da dwad",4F, "asdjalikfj lajlkdfsh asdkljfh sdfsjfkg fsdgkjahlkjlsdfg kjdafhkj ldfh ksjdfjkh lsdfkhj sdfkjhl sdfjk hlsdfjkhl dsf"),
+            ReviewRestaurant(5, "asd wadw ed aw dwa d awadwa daa da dwad",0.43F, "asdjalikfj lajlkdfsh asdkljfh sdfsjfkg fsdgkjahlkjlsdfg kjdafhkj ldfh ksjdfjkh lsdfkhj sdfkjhl sdfjk hlsdfjkhl dsf"),
+            ReviewRestaurant(6, "asd wadw ed aw dwa d awadwa daa da dwad",3.43F, "asdjalikfj lajlkdfsh asdkljfh sdfsjfkg fsdgkjahlkjlsdfg kjdafhkj ldfh ksjdfjkh lsdfkhj sdfkjhl sdfjk hlsdfjkhl dsf"),
 
     )
 

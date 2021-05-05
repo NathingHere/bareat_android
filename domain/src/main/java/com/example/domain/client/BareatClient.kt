@@ -3,7 +3,7 @@ package com.example.domain.client
 import com.example.data.Dish
 import com.example.data.Either
 import com.example.data.Restaurant
-import com.example.data.Review
+import com.example.data.ReviewRestaurant
 
 interface BareatClient {
 
@@ -11,6 +11,6 @@ interface BareatClient {
 
     suspend fun getDishList(isMock: Boolean = false, id: Int): Either<String, List<Dish>>
 
-    suspend fun getCommentList(isMock: Boolean = false, id: Int): Either<String, List<Review>>
+    suspend fun getCommentList(isMock: Boolean = false, id: Int): Either<String, List<ReviewRestaurant>>
 
 }

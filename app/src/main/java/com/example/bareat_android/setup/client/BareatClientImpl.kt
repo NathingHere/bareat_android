@@ -1,10 +1,9 @@
 package com.example.bareat_android.setup.client
 
-import com.example.bareat_android.BuildConfig
 import com.example.data.Dish
 import com.example.data.Either
 import com.example.data.Restaurant
-import com.example.data.Review
+import com.example.data.ReviewRestaurant
 import com.example.domain.client.BareatClient
 import com.example.domain.client.BareatService
 import com.example.domain.client.MockClient
@@ -39,7 +38,7 @@ private val mockClient: MockClient
         }
     }
 
-    override suspend fun getCommentList(isMock: Boolean, id: Int): Either<String, List<Review>> {
+    override suspend fun getCommentList(isMock: Boolean, id: Int): Either<String, List<ReviewRestaurant>> {
         return try {
             if (isMock) mockClient.getCommentList(id) else {
                 val response = bareatService

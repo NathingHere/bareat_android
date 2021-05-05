@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.bareat_android.ui.base.BaseViewModel
 import com.example.data.Dish
-import com.example.data.Review
+import com.example.data.ReviewRestaurant
 import com.example.data.fold
 import com.example.domain.usecase.dish.GetDishListUseCase
 import com.example.domain.usecase.review.GetReviewListUseCase
@@ -24,7 +24,7 @@ class RestaurantViewModel(
 
     sealed class ReviewState {
         object Empty : ReviewState()
-        data class SUCCESS(val reviewList: List<Review>) : ReviewState()
+        data class SUCCESS(val reviewRestaurantList: List<ReviewRestaurant>) : ReviewState()
         data class ERROR(val errorMessage: String) : ReviewState()
     }
 
