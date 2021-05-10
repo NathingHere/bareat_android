@@ -17,11 +17,13 @@ import com.example.bareat_android.databinding.ReviewItemviewBinding
 import com.example.bareat_android.setup.extensions.initHorizontalRecycler
 import com.example.bareat_android.setup.extensions.initVerticalRecycler
 import com.example.bareat_android.setup.extensions.visible
+import com.example.bareat_android.ui.adapter.ReviewAdapter
 import com.example.bareat_android.ui.base.BaseRecyclerView
 import com.example.bareat_android.ui.base.BaseViewHolder
 import com.example.bareat_android.ui.base.BaseViewModel
 import com.example.bareat_android.ui.customview.BareatToolbar
 import com.example.data.Dish
+import com.example.data.Restaurant
 import com.example.data.ReviewRestaurant
 import kotlinx.android.synthetic.main.dialog_rating.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -33,7 +35,9 @@ class RestaurantFragment : BaseFragment<FragmentRestaurantBinding>() {
     private val restaurantViewModel by viewModel<RestaurantViewModel>()
 
     private val dishListAdapter = DishListAdapter { onDishClick(it) }
-    private val reviewListAdapter = ReviewListAdapter()
+    private lateinit var reviewListAdapter : ReviewAdapter
+
+    private var restaurantList = listOf<ReviewRestaurant>()
 
     private lateinit var dialog: Dialog
 
@@ -85,6 +89,7 @@ class RestaurantFragment : BaseFragment<FragmentRestaurantBinding>() {
                 showReviewDialog()
             }
 
+            reviewListAdapter = ReviewAdapter(layoutInflater)
 
             rvDishes.initHorizontalRecycler(dishListAdapter)
             rvReviews.initVerticalRecycler(reviewListAdapter)
@@ -172,27 +177,6 @@ class RestaurantFragment : BaseFragment<FragmentRestaurantBinding>() {
 
     }
 
-    inner class ReviewListAdapter : BaseRecyclerView<ReviewRestaurant, ReviewListAdapter.Holder>() {
-
-        override fun getViewHolder(parent: ViewGroup, viewType: Int): ReviewListAdapter.Holder =
-                Holder(ReviewItemviewBinding.inflate(layoutInflater, parent, false))
-
-        inner class Holder(private val reviewItemviewBinding: ReviewItemviewBinding) : BaseViewHolder<ReviewRestaurant>(reviewItemviewBinding) {
-
-            override fun bindData(item: ReviewRestaurant) {
-                with(reviewItemviewBinding) {
-                    tvName.text = item.name
-                    tvReview.text = item.comment
-                    item.rating?.let {
-                        ratingBar.rating = it
-                    }
-
-                }
-            }
-        }
-
-    }
-
     private fun showReviewDialog() {
         context?.let { it ->
             dialog = Dialog(it).apply {
@@ -222,7 +206,7 @@ class RestaurantFragment : BaseFragment<FragmentRestaurantBinding>() {
     }
 
     private fun onDishClick(dish: Dish) {
-        TODO("Not yet implemented")
+        navController?.navigate(RestaurantFragmentDirections.routeToDish(dish))
     }
 
     private fun isCallFinished() {

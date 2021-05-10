@@ -66,5 +66,17 @@
         <argument
             android:name="currentRestaurant"
             app:argType="com.example.data.Restaurant" />
+        <action
+            android:id="@+id/route_to_dish"
+            app:destination="@id/dishFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dishFragment"
+        android:name="com.example.bareat_android.ui.dish.DishFragment"
+        android:label="fragment_dish"
+        tools:layout="@layout/fragment_dish" >
+        <argument
+            android:name="currentDish"
+            app:argType="com.example.data.Dish" />
     </fragment>
 </navigation>
