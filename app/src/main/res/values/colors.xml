@@ -10,6 +10,10 @@
     <color name="colorPrimary">#78d19c</color>
     <color name="colorPrimaryDark">#448370</color>
     <color name="colorAccent">#ab4e7f</color>
+    <color name="ripple_material_light">#78d19b</color>
+    <color name="ripple_material_dark">#428370</color>
+    <color name="rippleColor">#78d19b</color>
+
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>

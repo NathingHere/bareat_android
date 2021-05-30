@@ -31,4 +31,13 @@
     <style name="Theme.Bareat_android.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.Bareat_android.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="datepicker" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/colorPrimary</item>                   <!--header background-->
+        <item name="android:windowBackground">@color/white</item>     <!--calendar background-->
+        <item name="android:colorControlActivated">@color/colorPrimary</item> <!--selected day-->
+        <item name="android:textColorPrimary">@color/colorPrimaryDark</item>
+        <item name="android:textColorSecondary">@color/black</item>
+    </style>
+
 </resources>

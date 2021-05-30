@@ -8,6 +8,6 @@ class ReviewRepository(
         private val bareatClient: BareatClient
 ) {
 
-    suspend fun getReviewList(id: Int) : Either<String, List<ReviewRestaurant>> = bareatClient.getCommentList(true, id)
+    suspend fun getReviewList(id: Int) : Either<String, List<ReviewRestaurant>> = bareatClient.getCommentList(false, id)
 
 }

@@ -14,6 +14,7 @@
     <string name="alphabetically">Orden alfabético</string>
     <string name="enter">Entrar</string>
     <string name="register">Regístrate</string>
+    <string name="personal_data">Datos personales</string>
     <string name="password">Contraseña*</string>
     <string name="repeat_password">Repetir contraseña</string>
     <string name="email">Email*</string>
@@ -22,8 +23,8 @@
     <string name="forgot">¿Olvidaste la contraseña?</string>
     <string name="complete_profile">Complete su perfil</string>
     <string name="name">Nombre*</string>
-    <string name="surname">Apellidos</string>
-    <string name="phone">Teléfono*</string>
+    <string name="surname">Apellidos*</string>
+    <string name="phone">Teléfono</string>
     <string name="birthdate">Fecha de nacimiento</string>
     <string name="finish">Finalizar</string>
     <string name="add">Publicidad</string>
@@ -32,6 +33,7 @@
     <string name="error_pass_not_valid">La contraseña debe tener más de 6 caracteres</string>
     <string name="error_email">Tienes que introducir un email correcto</string>
     <string name="error_pass_not_same">Las contraseña no coincide en ambos campos</string>
+    <string name="error_phone_not_valid">El teléfono no es válido</string>
 
 
     <!--MAIN SCREEN-->

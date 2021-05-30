@@ -113,5 +113,13 @@ fun BaseActivity<*>.hideProgressDialog() {
     this.progressDialog?.dismiss()
 }
 
+fun String.addTenths(): String {
+    return if (this.toInt() <= 9) {
+        String.format("0%s", this)
+    } else {
+        this
+    }
+}
+
 
 

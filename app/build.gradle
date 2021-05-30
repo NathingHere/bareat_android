@@ -9,7 +9,6 @@ apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "29.0.3"
 
     defaultConfig {
         applicationId "com.example.bareat_android"
@@ -28,14 +27,14 @@ android {
         tes {
             dimension "bareat"
             buildConfigField "String", "ENVIRONMENT", '""'
-            buildConfigField "String", "BASE_URL_BAREAT", '"https://url"'
+            buildConfigField "String", "BASE_URL_BAREAT", '"http://35.181.160.138/proyectos/BarEat/public/"'
             buildConfigField "boolean", "MOCK", "false"
         }
 
         dev {
             dimension "bareat"
             buildConfigField "String", "ENVIRONMENT", '""'
-            buildConfigField "String", "BASE_URL_BAREAT", '"https://url"'
+            buildConfigField "String", "BASE_URL_BAREAT", '"http://35.181.160.138/proyectos/BarEat/public/"'
             buildConfigField "boolean", "MOCK", "true"
         }
     }
@@ -103,4 +102,7 @@ dependencies {
     implementation 'com.github.Deishelon:RoundedBottomSheet:1.0.1'
 
     implementation("io.coil-kt:coil:1.2.0")
+
+    implementation 'com.tbuonomo:dotsindicator:4.2'
+
 }

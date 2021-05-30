@@ -13,7 +13,6 @@ import com.example.bareat_android.ui.adapter.RestaurantAdapter
 import com.example.bareat_android.ui.base.BaseFragment
 import com.example.bareat_android.ui.base.BaseViewModel
 import com.example.bareat_android.ui.customview.BareatToolbar
-import com.example.bareat_android.ui.home.HomeFragmentDirections.Companion.routeToRestaurant
 import com.example.data.Restaurant
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -80,7 +79,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     private fun onRestaurantClick(restaurant: Restaurant) {
-        navController?.navigate(routeToRestaurant(restaurant))
+        navController?.navigate(HomeFragmentDirections.routeToRestaurant(restaurant))
     }
 
     private fun alphabeticalList() {

@@ -17,9 +17,10 @@ class ReviewAdapter(private val layoutInflater: LayoutInflater) : BaseRecyclerVi
 
         override fun bindData(item: ReviewRestaurant) {
             with(reviewItemviewBinding) {
-                tvName.text = item.name
+                //tvName.text = item.name
                 tvReview.text = item.comment
-                item.rating?.let {
+                val rating = item.rating?.div(2f)
+                rating?.let {
                     ratingBar.rating = it
                 }
 

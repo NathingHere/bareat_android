@@ -4,9 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.bareat_android.ui.base.BaseViewModel
 import com.example.data.Dish
+import com.example.data.Image
 import com.example.data.ReviewRestaurant
 import com.example.data.fold
 import com.example.domain.usecase.dish.GetDishListUseCase
+import com.example.domain.usecase.restaurant.GetImageListUseCase
 import com.example.domain.usecase.review.GetReviewListUseCase
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
@@ -14,7 +16,8 @@ import kotlinx.coroutines.withContext
 
 class RestaurantViewModel(
         private val getDishListUseCase: GetDishListUseCase,
-        private val getReviewListUseCase: GetReviewListUseCase
+        private val getReviewListUseCase: GetReviewListUseCase,
+        private val getImageListUseCase: GetImageListUseCase
 ) : BaseViewModel() {
 
     sealed class DishState {
@@ -28,6 +31,11 @@ class RestaurantViewModel(
         data class ERROR(val errorMessage: String) : ReviewState()
     }
 
+    sealed class ImageState {
+        data class SUCCESS(val imageList: List<Image>) : ImageState()
+        data class ERROR(val errorMessage: String) : ImageState()
+    }
+
     private val _dishMutableData = MutableLiveData<ScreenState<DishState>>()
     val dishListData: LiveData<ScreenState<DishState>>
         get() = _dishMutableData
@@ -35,6 +43,10 @@ class RestaurantViewModel(
     private val _reviewMutableData = MutableLiveData<ScreenState<ReviewState>>()
     val reviewListData: LiveData<ScreenState<ReviewState>>
         get() = _reviewMutableData
+
+    private val _imageMutableData = MutableLiveData<ScreenState<ImageState>>()
+    val imageListData: LiveData<ScreenState<ImageState>>
+        get() = _imageMutableData
 
     fun getDishList(id: Int) {
         updateUI(ScreenState.LOADING)
@@ -66,12 +78,28 @@ class RestaurantViewModel(
         }
     }
 
+    fun getImageList(id: Int) {
+        updateImageListUI(ScreenState.LOADING)
+        uiScope.launch {
+            val result = uiScope.async { withContext(ioContext) { getImageListUseCase.execute(id) } }
+
+            result.await().fold(
+                { updateImageListUI(ScreenState.RenderData(ImageState.ERROR(it))) },
+                { updateImageListUI(ScreenState.RenderData(ImageState.SUCCESS(it))) }
+            )
+        }
+    }
+
     private fun updateUI(state: ScreenState<DishState>) {
         _dishMutableData.postValue(state)
     }
 
     private fun updateReviewUI(state:ScreenState<ReviewState>) {
         _reviewMutableData.postValue(state)
+    }
+
+    private fun updateImageListUI(state: ScreenState<ImageState>) {
+        _imageMutableData.postValue(state)
     }
 
 }

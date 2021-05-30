@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.navArgs
 import coil.load
 import com.example.bareat_android.R
@@ -17,12 +18,19 @@ import com.example.bareat_android.databinding.ReviewItemviewBinding
 import com.example.bareat_android.setup.extensions.initHorizontalRecycler
 import com.example.bareat_android.setup.extensions.initVerticalRecycler
 import com.example.bareat_android.setup.extensions.visible
+import androidx.appcompat.content.res.AppCompatResources.getDrawable
+import androidx.fragment.app.Fragment
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2
+import com.example.bareat_android.databinding.ViewpagerImageBinding
 import com.example.bareat_android.ui.adapter.ReviewAdapter
 import com.example.bareat_android.ui.base.BaseRecyclerView
 import com.example.bareat_android.ui.base.BaseViewHolder
 import com.example.bareat_android.ui.base.BaseViewModel
 import com.example.bareat_android.ui.customview.BareatToolbar
+import com.example.bareat_android.ui.login.MainActivity
 import com.example.data.Dish
+import com.example.data.Image
 import com.example.data.Restaurant
 import com.example.data.ReviewRestaurant
 import kotlinx.android.synthetic.main.dialog_rating.*
@@ -36,6 +44,7 @@ class RestaurantFragment : BaseFragment<FragmentRestaurantBinding>() {
 
     private val dishListAdapter = DishListAdapter { onDishClick(it) }
     private lateinit var reviewListAdapter : ReviewAdapter
+    private val imageListAdapter = ImageListAdapter()
 
     private var restaurantList = listOf<ReviewRestaurant>()
 
@@ -43,6 +52,7 @@ class RestaurantFragment : BaseFragment<FragmentRestaurantBinding>() {
 
     private var isReviewFinish = false
     private var isThisFinish = false
+    private var isImageFinish = false
 
     override fun initializeBinding(): FragmentRestaurantBinding {
         binding = FragmentRestaurantBinding.inflate(layoutInflater)
@@ -65,13 +75,13 @@ class RestaurantFragment : BaseFragment<FragmentRestaurantBinding>() {
         restaurantViewModel.init()
 
         with (binding) {
-
             tvName.text = args.currentRestaurant.name
-            args.currentRestaurant.rating?.let {
+            val rating = args.currentRestaurant.rating?.div(2f)
+            rating?.let {
                 ratingBar.rating = it
             }
             tvDescription.text = args.currentRestaurant.desc
-            tvScore.text = getString(R.string.score, args.currentRestaurant.rating)
+            tvScore.text = getString(R.string.score, rating)
             tvType.text = args.currentRestaurant.type
             btnEmail.setOnClickListener {
                 val mIntent = Intent(Intent.ACTION_SENDTO).apply {
@@ -90,7 +100,8 @@ class RestaurantFragment : BaseFragment<FragmentRestaurantBinding>() {
             }
 
             reviewListAdapter = ReviewAdapter(layoutInflater)
-
+            vpRestaurant.adapter = imageListAdapter
+            dotsIndicator.setViewPager2(vpRestaurant)
             rvDishes.initHorizontalRecycler(dishListAdapter)
             rvReviews.initVerticalRecycler(reviewListAdapter)
 
@@ -102,12 +113,36 @@ class RestaurantFragment : BaseFragment<FragmentRestaurantBinding>() {
             }
         }
 
+        restaurantViewModel.getImageList(args.currentRestaurant.id)
+        restaurantViewModel.imageListData.observe(viewLifecycleOwner) { manageImageScreenState(it) }
+
         restaurantViewModel.getDishList(args.currentRestaurant.id)
         restaurantViewModel.dishListData.observe(viewLifecycleOwner) { manageDishesScreenState(it) }
 
         restaurantViewModel.getReviewList(args.currentRestaurant.id)
         restaurantViewModel.reviewListData.observe(viewLifecycleOwner) { manageReviewsScreenState(it) }
 
+    }
+
+    private fun manageImageScreenState(state: BaseViewModel.ScreenState<RestaurantViewModel.ImageState>?) {
+        when(state) {
+            BaseViewModel.ScreenState.LOADING -> showProgressDialog()
+            is BaseViewModel.ScreenState.RenderData -> {
+                manageImageState(state.renderState)
+            }
+        }
+    }
+
+    private fun manageImageState(state: RestaurantViewModel.ImageState) {
+        isImageFinish = true
+        isCallFinished()
+        when(state){
+            is RestaurantViewModel.ImageState.SUCCESS -> {
+
+                imageListAdapter.updateList(state.imageList.subList(0, 5))
+            }
+            is RestaurantViewModel.ImageState.ERROR -> showToast(state.errorMessage)
+        }
     }
 
     private fun manageReviewsScreenState(state: BaseViewModel.ScreenState<RestaurantViewModel.ReviewState>?) {
@@ -161,15 +196,33 @@ class RestaurantFragment : BaseFragment<FragmentRestaurantBinding>() {
                 with(dishItemviewBinding) {
                     ivDish.load(item.cover)
                     tvName.text = item.name
-                    item.rating?.let {
+                    val rating = item.rating?.div(2f)
+                    rating?.let {
                         ratingBar.rating = it
                     }
                     tvPrice.text = getString(R.string.price, item.price)
 
-                    root.setOnClickListener {
+                    card.setOnClickListener {
                         onClick.invoke(item)
                     }
 
+                }
+            }
+
+        }
+
+    }
+
+    inner class ImageListAdapter : BaseRecyclerView<Image, ImageListAdapter.Holder>() {
+
+        override fun getViewHolder(parent: ViewGroup, viewType: Int): ImageListAdapter.Holder = Holder(
+            ViewpagerImageBinding.inflate(layoutInflater, parent, false))
+
+        inner class Holder(private val viewpagerImageBinding: ViewpagerImageBinding) : BaseViewHolder<Image>(viewpagerImageBinding) {
+
+            override fun bindData(item: Image) {
+                with(viewpagerImageBinding) {
+                    ivViewPager.load(item.url)
                 }
             }
 
@@ -210,7 +263,7 @@ class RestaurantFragment : BaseFragment<FragmentRestaurantBinding>() {
     }
 
     private fun isCallFinished() {
-        if(isReviewFinish && isThisFinish) hideProgressDialog()
+        if(isReviewFinish && isThisFinish && isImageFinish) hideProgressDialog()
     }
 
 }

@@ -1,9 +1,8 @@
 package com.example.bareat_android.setup.client
 
-import com.example.data.Dish
-import com.example.data.Either
-import com.example.data.Restaurant
-import com.example.data.ReviewRestaurant
+import com.example.data.*
+import com.example.data.torecieve.RegisterResponse
+import com.example.data.tosend.RegisterBody
 import com.example.domain.client.BareatClient
 import com.example.domain.client.BareatService
 import com.example.domain.client.MockClient
@@ -15,6 +14,14 @@ private val networkController: NetworkController,
 private val mockClient: MockClient
 
 ) : BareatClient {
+    override suspend fun doRegister(registerBody: RegisterBody): Either<String, RegisterResponse> {
+        return try {
+            val response = bareatService.doRegister(registerBody)
+            networkController.checkResponse(response)
+        } catch (e: Exception) {
+            networkController.checkException(e)
+        }
+    }
 
     override suspend fun getRestaurantList(isMock: Boolean): Either<String, List<Restaurant>> {
         return try {
@@ -45,6 +52,15 @@ private val mockClient: MockClient
                 networkController.checkResponse(response.getCommentList(id))
             }
         } catch (e: java.lang.Exception) {
+            networkController.checkException(e)
+        }
+    }
+
+    override suspend fun getImageList(id: Int): Either<String, List<Image>> {
+        return try {
+            val response = bareatService.getImageList(id)
+            networkController.checkResponse(response)
+        } catch (e: Exception) {
             networkController.checkException(e)
         }
     }

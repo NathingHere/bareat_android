@@ -8,6 +8,6 @@ class DishRepository(
         private val bareatClient: BareatClient
 ) {
 
-    suspend fun getDishList(id: Int) : Either<String, List<Dish>> = bareatClient.getDishList(true, id)
+    suspend fun getDishList(id: Int) : Either<String, List<Dish>> = bareatClient.getDishList(false, id)
 
 }

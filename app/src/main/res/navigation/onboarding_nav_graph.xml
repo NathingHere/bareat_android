@@ -33,13 +33,5 @@
         <action
             android:id="@+id/route_to_onboarding"
             app:destination="@id/onBoardingFragment" />
-        <action
-            android:id="@+id/route_to_finish_register"
-            app:destination="@id/finishRegisterFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/finishRegisterFragment"
-        android:name="com.example.bareat_android.ui.register.FinishRegisterFragment"
-        android:label="fragment_finish_register"
-        tools:layout="@layout/fragment_finish_register" />
 </navigation>

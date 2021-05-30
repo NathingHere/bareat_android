@@ -51,6 +51,7 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         app:itemIconSize="32dp"
+        app:itemRippleColor="@color/rippleColor"
         app:labelVisibilityMode="unlabeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

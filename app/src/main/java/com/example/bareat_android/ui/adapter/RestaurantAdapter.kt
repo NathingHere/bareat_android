@@ -28,11 +28,12 @@ class RestaurantAdapter(
                 tvName.text = item.name
                 if (item.isPremium == true) tvAdd.visible()
                 tvDetails.text = item.type
-                item.rating?.let {
+                val rating = item.rating?.div(2f)
+                rating?.let {
                     ratingBar.rating = it
                 }
 
-                root.setOnClickListener {
+                cardView.setOnClickListener {
                     onClick.invoke(item)
                 }
 

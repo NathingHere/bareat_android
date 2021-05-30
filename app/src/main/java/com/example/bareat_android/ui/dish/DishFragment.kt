@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
+import coil.load
 import com.example.bareat_android.R
 import com.example.bareat_android.databinding.FragmentDishBinding
 import com.example.bareat_android.setup.extensions.visible
@@ -42,11 +43,13 @@ class DishFragment : BaseFragment<FragmentDishBinding>() {
 
         with(binding) {
             tvName.text = args.currentDish.name
-            args.currentDish.rating?.let {
+            ivDish.load(args.currentDish.cover)
+            val rating = args.currentDish.rating?.div(2f)
+            rating?.let {
                 ratingBar.rating = it
             }
             tvDescription.text = args.currentDish.desc
-            tvScore.text = getString(R.string.score, args.currentDish.rating)
+            tvScore.text = getString(R.string.score, rating)
             tvType.text = args.currentDish.type
 
             btnReviews.setOnClickListener {
