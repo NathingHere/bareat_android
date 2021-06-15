@@ -35,6 +35,7 @@ class NetworkController {
             403 -> MessageError.forbidden
             404 -> MessageError.notFound
             405 -> MessageError.methodNotAllowed
+            422 -> MessageError.emailRegistered
             in 500..503 -> MessageError.networkDown
             800 -> MessageError.updateApp
             else -> MessageError.errorGeneral

@@ -72,7 +72,7 @@ abstract class BaseActivity<BINDING : ViewBinding> : AppCompatActivity() {
                 view.setBackgroundColor(
                         ContextCompat.getColor(
                                 context,
-                                R.color.bareat_blue
+                                R.color.colorPrimary
                         )
                 )
                 val tv = view.findViewById(R.id.snackbar_text) as TextView

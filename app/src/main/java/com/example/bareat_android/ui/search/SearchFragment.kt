@@ -7,6 +7,7 @@ import android.view.Gravity
 import android.widget.SearchView
 import com.example.bareat_android.R
 import com.example.bareat_android.databinding.FragmentSearchBinding
+import com.example.bareat_android.setup.extensions.gone
 import com.example.bareat_android.setup.extensions.initVerticalRecycler
 import com.example.bareat_android.setup.extensions.visible
 import com.example.bareat_android.ui.adapter.RestaurantAdapter
@@ -24,6 +25,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
 
     private lateinit var restaurantAdapter: RestaurantAdapter
 
+    private var fullRestaurantList = listOf<Restaurant>()
     private var restaurantList = listOf<Restaurant>()
 
     override fun initializeBinding(): FragmentSearchBinding {
@@ -33,10 +35,16 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
 
     override fun setToolbar() {
         provideToolbar().apply {
-            initToolbar(BareatToolbar.ToolbarItemMenu.EmptyItem)
+            initToolbar(BareatToolbar.ToolbarItemMenu.SearchItemEmpty)
             visible()
             hideDoneCancelButtons()
             setBigToolbarTitle(getString(R.string.section_search))
+            setOnMenuItemClick (
+                onNothingClick = {nothingFilter()},
+                onBarClick = {barFilter()},
+                onRestaurantClick = {restaurantFilter()},
+                onCafeClick = {cafeFilter()}
+            )
         }
     }
 
@@ -88,6 +96,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
         when (state) {
             is SearchViewModel.RestaurantState.SUCCESS -> {
                 restaurantList = state.restaurantList
+                fullRestaurantList = state.restaurantList
                 restaurantAdapter.updateList(state.restaurantList)
             }
             is SearchViewModel.RestaurantState.ERROR -> showToast(state.errorMessage)
@@ -99,7 +108,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
 
         for(row in restaurantList) {
 
-            if(filterItem in row.name.toString()) {
+            if(filterItem.toLowerCase() in row.name.toString().toLowerCase()) {
 
                 tempList += row
 
@@ -109,10 +118,46 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
 
         }
 
+        if(tempList.count() == 0)
+            binding.tvEmpty.visible()
+        else
+            binding.tvEmpty.gone()
+
     }
 
     private fun onRestaurantClick(restaurant: Restaurant) {
         navController?.navigate(routeToRestaurant(restaurant))
+    }
+
+    private fun cafeFilter() {
+        restaurantList = fullRestaurantList
+        binding.search.setText("")
+        restaurantList = restaurantList.filter { it.type == "Cafetería" }
+        restaurantAdapter.updateList(restaurantList)
+        provideToolbar().initToolbar(BareatToolbar.ToolbarItemMenu.SearchItemCafe)
+    }
+
+    private fun restaurantFilter() {
+        restaurantList = fullRestaurantList
+        binding.search.setText("")
+        restaurantList = restaurantList.filter { it.type == "Restaurante" }
+        restaurantAdapter.updateList(restaurantList)
+        provideToolbar().initToolbar(BareatToolbar.ToolbarItemMenu.SearchItemRestaurant)
+    }
+
+    private fun barFilter() {
+        restaurantList = fullRestaurantList
+        binding.search.setText("")
+        restaurantList = restaurantList.filter { it.type == "Bar" }
+        restaurantAdapter.updateList(restaurantList)
+        provideToolbar().initToolbar(BareatToolbar.ToolbarItemMenu.SearchItemBar)
+    }
+
+    private fun nothingFilter() {
+        restaurantList = fullRestaurantList
+        binding.search.setText("")
+        restaurantAdapter.updateList(restaurantList)
+        provideToolbar().initToolbar(BareatToolbar.ToolbarItemMenu.SearchItemEmpty)
     }
 
 }

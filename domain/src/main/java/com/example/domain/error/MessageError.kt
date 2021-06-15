@@ -20,4 +20,6 @@ object MessageError {
 
     const val methodNotAllowed = "Este método no esta permitido"
 
+    const val emailRegistered = "Este correo ya está registrado"
+
 }

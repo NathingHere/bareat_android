@@ -77,7 +77,7 @@ abstract class BaseFragment<BINDING : ViewBinding> : Fragment() {
                 view.setBackgroundColor(
                         ContextCompat.getColor(
                                 context,
-                                R.color.bareat_blue
+                                R.color.colorPrimary
                         )
                 )
                 val tv = view.findViewById(R.id.snackbar_text) as TextView

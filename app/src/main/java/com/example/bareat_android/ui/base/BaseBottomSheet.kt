@@ -17,6 +17,8 @@ import androidx.viewbinding.ViewBinding
 import com.deishelon.roundedbottomsheet.RoundedBottomSheetDialogFragment
 import com.example.bareat_android.R
 import com.example.bareat_android.setup.client.Prefs
+import com.example.bareat_android.setup.extensions.hideProgressDialog
+import com.example.bareat_android.setup.extensions.showProgressDialog
 import com.example.bareat_android.ui.login.MainActivity
 import com.google.android.material.snackbar.Snackbar
 import org.koin.android.ext.android.inject
@@ -77,4 +79,17 @@ abstract class BaseBottomSheet<BINDING : ViewBinding> : RoundedBottomSheetDialog
     protected fun showToast(message: String) {
         Toast.makeText(context, message, Toast.LENGTH_LONG).show()
     }
+
+    fun showProgressDialog() {
+        if (activity != null) {
+            (activity as BaseActivity<*>).showProgressDialog()
+        }
+    }
+
+    fun hideProgressDialog() {
+        if (activity != null) {
+            (activity as BaseActivity<*>).hideProgressDialog()
+        }
+    }
+
 }

@@ -27,7 +27,7 @@
                 android:weightSum="100"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rvDishes">
+                app:layout_constraintTop_toBottomOf="@+id/mapView">
 
                 <TextView
                     android:id="@+id/tvRestaurant"
@@ -173,7 +173,8 @@
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnReviews" />
+                app:layout_constraintTop_toBottomOf="@+id/btnReviews"
+                tools:visibility="visible" />
 
             <RatingBar
                 android:id="@+id/ratingBar"
@@ -231,11 +232,68 @@
                 tools:text="Restaurante y raciones" />
 
             <TextView
+                android:id="@+id/tvLocationTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="@string/address"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rvDishes" />
+
+            <TextView
+                android:id="@+id/tvLocation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:ellipsize="end"
+                android:lines="1"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@+id/tvLocationTitle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvLocationTitle"
+                app:layout_constraintTop_toTopOf="@+id/tvLocationTitle"
+                tools:text="SAD asd asdas d" />
+
+            <TextView
+                android:id="@+id/tvDescription2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:ellipsize="end"
+                android:maxLines="6"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvType"
+                tools:text="Descripcion del restaurante sdfsdf sd fsd fsd f sfg sdf dsfsdfsdfsdf sdf sdf sdf sdf sdfsdf " />
+
+            <com.google.android.gms.maps.MapView
+                android:id="@+id/mapView"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvLocationTitle" />
+
+            <TextView
                 android:id="@+id/textView12"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="48dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
                 android:ellipsize="end"
                 android:maxLines="2"

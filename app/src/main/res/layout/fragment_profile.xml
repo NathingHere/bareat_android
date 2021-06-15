@@ -10,53 +10,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:id="@+id/btnRestaurants"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tvEmptyBook"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:weightSum="100"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@string/empty_book"
+            android:textColor="@color/colorPrimary"
+            android:textSize="24sp"
+            android:textStyle="normal"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/rvBook"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rvBook">
-
-            <TextView
-                android:id="@+id/tvRestaurant"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="80"
-                android:enabled="false"
-                android:gravity="start"
-                android:text="@string/profile_review_restaurant"
-                android:textColor="@color/black"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                app:hintTextColor="@color/colorPrimaryDark"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/inputNameLayout" />
-
-            <TextView
-                android:id="@+id/tvViewAllR"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_weight="20"
-                android:enabled="false"
-                android:gravity="end"
-                android:text="@string/see_all_f"
-                android:textColor="@color/colorAccent"
-                android:textSize="14sp"
-                android:textStyle="normal"
-                app:hintTextColor="@color/colorPrimaryDark"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/inputNameLayout" />
-        </LinearLayout>
+            app:layout_constraintTop_toTopOf="@+id/rvBook"
+            tools:visibility="visible" />
 
         <TextView
             android:id="@+id/textView9"
@@ -65,20 +34,47 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
             android:maxLines="3"
+            android:text="@string/profile_book"
             android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="@string/profile_book" />
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:maxLines="3"
+            android:text="@string/profile_review_restaurant"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rvBook" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:maxLines="3"
+            android:text="@string/profile_review_dish"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvBook"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
-            android:layout_marginEnd="16dp"
+            android:minHeight="200dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView9" />
@@ -87,70 +83,20 @@
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
-            android:layout_marginEnd="16dp"
+            android:minHeight="200dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnRestaurants" />
-
-        <LinearLayout
-            android:id="@+id/btnDishes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:weightSum="100"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerView">
-
-            <TextView
-                android:id="@+id/tvDishes"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="80"
-                android:enabled="false"
-                android:gravity="start"
-                android:text="@string/profile_review_dish"
-                android:textColor="@color/black"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                app:hintTextColor="@color/colorPrimaryDark"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/inputNameLayout" />
-
-            <TextView
-                android:id="@+id/tvViewAllD"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_weight="20"
-                android:enabled="false"
-                android:gravity="end"
-                android:text="@string/see_all_f"
-                android:textColor="@color/colorAccent"
-                android:textSize="14sp"
-                android:textStyle="normal"
-                app:hintTextColor="@color/colorPrimaryDark"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/inputNameLayout" />
-        </LinearLayout>
+            app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvDishes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
-            android:layout_marginEnd="16dp"
+            android:minHeight="200dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnDishes" />
+            app:layout_constraintTop_toBottomOf="@+id/textView15" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

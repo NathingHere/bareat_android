@@ -12,6 +12,10 @@
     <string name="popularity">Más popular</string>
     <string name="rated">Mejor valorado</string>
     <string name="alphabetically">Orden alfabético</string>
+    <string name="nothing">Quitar filtro</string>
+    <string name="restaurants">Restaurantes</string>
+    <string name="bar">Bares</string>
+    <string name="cafes">Cafeterías</string>
     <string name="enter">Entrar</string>
     <string name="register">Regístrate</string>
     <string name="personal_data">Datos personales</string>
@@ -44,6 +48,7 @@
     <string name="see_all_f">Ver todas</string>
     <string name="see_all_m">Ver todos</string>
     <string name="tel_btn">Teléfono</string>
+    <string name="address">Dirección: </string>
     <string name="email_btn">Email</string>
     <string name="dishes">Platos</string>
     <string name="reviews">Reseñas</string>
@@ -54,7 +59,12 @@
     <string name="price">%1$.2f€</string>
     <string name="score">%1$.2f / 5</string>
     <string name="send">Enviar</string>
-    <string name="comment">Comentario (opcional)</string>
+    <string name="close">Cerrar</string>
+    <string name="comment">Comentario</string>
     <string name="empty_comments">No hay reseñas</string>
+    <string name="empty_list">No hay resultados</string>
+    <string name="empty_book">No tienes ninguna reserva</string>
+    <string name="logout_title">Cerrar sesión</string>
+    <string name="logout_subtitle">¿Estás seguro de que quieres cerrar sesión?</string>
 
 </resources>

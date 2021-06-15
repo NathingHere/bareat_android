@@ -7,8 +7,10 @@ import androidx.navigation.NavDirections
 import com.example.bareat_android.R
 import com.example.bareat_android.databinding.ActivityMainBinding
 import com.example.bareat_android.setup.extensions.gone
+import com.example.bareat_android.setup.extensions.launchActivity
 import com.example.bareat_android.setup.extensions.visible
 import com.example.bareat_android.ui.base.BaseActivity
+import com.example.bareat_android.ui.onboarding.OnBoardingActivity
 import com.example.bareat_android.ui.profile.ProfileFragmentDirections.Companion.routeToSearch
 import com.example.bareat_android.ui.search.SearchFragmentDirections.Companion.routeToHome
 import com.example.bareat_android.ui.search.SearchFragmentDirections.Companion.routeToProfile
@@ -130,6 +132,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun onBackPressed() {
         if (isInsideBottomNav) finish() else super.onBackPressed()
+    }
+
+    fun routeToLogin() {
+        launchActivity<OnBoardingActivity>(finish = true)
     }
 
 }

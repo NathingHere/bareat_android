@@ -13,5 +13,5 @@ data class Dish (
         @SerializedName("descripcion_producto") val desc: String?,
         @SerializedName("precio_producto") val price: Double?,
         @SerializedName("ruta_foto_principal") val cover: String?,
-        @SerializedName("puntuacion_media_producto") val rating: Float?
+        @SerializedName("puntuacion_media_producto") val rating: Int?
         ) : Parcelable, JSONConvertable

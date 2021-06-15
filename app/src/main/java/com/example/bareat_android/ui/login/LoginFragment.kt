@@ -1,20 +1,20 @@
 package com.example.bareat_android.ui.login
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import com.example.bareat_android.R
 import com.example.bareat_android.databinding.FragmentLoginBinding
 import com.example.bareat_android.setup.extensions.isEmail
 import com.example.bareat_android.setup.extensions.isValidPassword
 import com.example.bareat_android.setup.extensions.launchActivity
 import com.example.bareat_android.ui.base.BaseFragment
+import com.example.bareat_android.ui.base.BaseViewModel
 import com.example.bareat_android.ui.login.LoginFragmentDirections.Companion.routeToOnboarding
+import com.example.data.tosend.LoginBody
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class LoginFragment : BaseFragment<FragmentLoginBinding>() {
+
+    private val loginViewModel by viewModel<LoginViewModel>()
 
     override fun initializeBinding(): FragmentLoginBinding {
         binding = FragmentLoginBinding.inflate(layoutInflater)
@@ -22,6 +22,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     }
 
     override fun initView() {
+        loginViewModel.init()
 
         with(binding) {
 
@@ -40,13 +41,38 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
             btnBack.setOnClickListener {
                 navController?.navigate(routeToOnboarding())
             }
+
+            loginViewModel.loginLiveData.observe(viewLifecycleOwner) { manageLoginScreenState(it) }
         }
 
     }
 
+    private fun manageLoginScreenState(state: BaseViewModel.ScreenState<LoginViewModel.LoginState>?) {
+        when (state) {
+            BaseViewModel.ScreenState.LOADING -> showProgressDialog()
+            is BaseViewModel.ScreenState.RenderData -> manageLoginState(state.renderState)
+        }
+    }
+
+    private fun manageLoginState(state: LoginViewModel.LoginState) {
+        hideProgressDialog()
+        when (state) {
+            is LoginViewModel.LoginState.SUCCESS -> {
+                prefs.id = state.loginResponse.dataProfile?.id.toString()
+                prefs.email = state.loginResponse.dataProfile?.email
+                prefs.name = state.loginResponse.dataProfile?.name + " " + state.loginResponse.dataProfile?.surname
+                prefs.token = state.loginResponse.token
+                activity?.launchActivity<MainActivity>(true)
+            }
+            is LoginViewModel.LoginState.ERROR -> showMessage(if(state.errorMessage == "No estas autorizado" ) "El email o la contraseña son incorrectos" else state.errorMessage, binding.constraintContainer)
+        }
+    }
+
     private fun onLoginPressed() {
         if (checkInputs()) {
-            routeToHome()
+            with(binding) {
+                loginViewModel.doLogin(LoginBody(email.text.toString(), password.text.toString()))
+            }
         }
     }
 

@@ -69,6 +69,9 @@
         <action
             android:id="@+id/route_to_dish"
             app:destination="@id/dishFragment" />
+        <action
+            android:id="@+id/route_to_book"
+            app:destination="@id/bookFragment" />
     </fragment>
     <fragment
         android:id="@+id/dishFragment"
@@ -79,4 +82,13 @@
             android:name="currentDish"
             app:argType="com.example.data.Dish" />
     </fragment>
+    <dialog
+        android:id="@+id/bookFragment"
+        android:name="com.example.bareat_android.ui.book.BookFragment"
+        android:label="fragment_book"
+        tools:layout="@layout/fragment_book" >
+        <action
+            android:id="@+id/route_to_restaurant"
+            app:destination="@id/restaurantFragment" />
+    </dialog>
 </navigation>

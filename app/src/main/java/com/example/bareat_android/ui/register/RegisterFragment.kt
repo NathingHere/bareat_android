@@ -75,11 +75,8 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
         hideProgressDialog()
         when (state) {
             is RegisterViewModel.RegisterState.SUCCESS -> {
-                prefs.token = state.registerResponse.data?.id.toString()
-                prefs.email = state.registerResponse.data?.email
-                prefs.name = state.registerResponse.data?.name
-                prefs.surname = state.registerResponse.data?.surname
-                activity?.launchActivity<MainActivity>(true)
+                showMessage("Registrado con éxito", binding.constraintContainer)
+                navController?.navigate(RegisterFragmentDirections.routeToOnboarding())
             }
             is RegisterViewModel.RegisterState.ERROR -> showMessage(state.errorMessage, binding.constraintContainer)
         }
@@ -96,7 +93,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
     private fun checkPhoneNumber(): Boolean {
         with(binding) {
             return if (phone.text?.toString()?.isEmpty() == true ||
-                (phone.text?.toString()?.isEmpty() == false && phone.text?.toString()?.length!! > 8 && phone.text?.toString()
+                (phone.text?.toString()?.isEmpty() == false && phone.text?.toString()?.length!! == 9 && phone.text?.toString()
                     ?.isEmpty() == false)
             ) {
                 true

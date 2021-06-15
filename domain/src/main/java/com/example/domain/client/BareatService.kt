@@ -1,24 +1,17 @@
 package com.example.domain.client
 
-import com.example.data.Dish
-import com.example.data.Image
-import com.example.data.Restaurant
-import com.example.data.ReviewRestaurant
-import com.example.data.torecieve.RegisterResponse
-import com.example.data.tosend.LoginBody
-import com.example.data.tosend.RegisterBody
+import com.example.data.*
+import com.example.data.torecieve.*
+import com.example.data.tosend.*
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface BareatService {
 
     //ONBOARDING
 
-    //@POST("api/login")
-    //suspend fun doLogin(@Body loginBody: LoginBody): Response<LoginResponse>
+    @POST("api/login")
+    suspend fun doLogin(@Body loginBody: LoginBody): Response<LoginResponse>
 
     @POST("api/usuarios")
     suspend fun doRegister(@Body registerBody: RegisterBody): Response<RegisterResponse>
@@ -34,7 +27,25 @@ interface BareatService {
     @GET("api/establecimiento/{id}/puntuaciones")
     suspend fun getCommentList(@Path("id") id: Int): Response<List<ReviewRestaurant>>
 
+    @GET("api/producto/{id}/puntuaciones")
+    suspend fun getCommentListDish(@Path("id") id: Int): Response<List<ReviewDish>>
+
     @GET("api/establecimiento/{id}/imagenes")
     suspend fun getImageList(@Path("id") id: Int): Response<List<Image>>
+
+    @GET("api/usuario/{id}/reservas")
+    suspend fun getBookList(@Path("id") id: Int): Response<List<DataBook>>
+
+    @POST("api/usuario/{userId}/establecimiento/{restaurantId}/puntuacion")
+    suspend fun rateRestaurant(@Path("userId") userId: Int, @Path("restaurantId") restaurantId: Int, @Body rateRestaurantBody: RateRestaurantBody): Response<RateRestaurantResponse>
+
+    @POST("api/usuario/{userId}/establecimiento/{restaurantId}/reserva")
+    suspend fun bookRestaurant(@Path("userId") userId: Int, @Path("restaurantId") restaurantId: Int, @Body bookBody: BookBody): Response<BookResponse>
+
+    @POST("api/usuario/{userId}/producto/{dishId}/puntuacion")
+    suspend fun rateDish(@Path("userId") userId: Int, @Path("dishId") dishId: Int, @Body rateDishBody: RateDishBody): Response<RateDishResponse>
+
+    @DELETE("api/usuario/{userId}/reservas/{bookId}")
+    suspend fun deleteBook(@Path("userId") userId: Int, @Path("bookId") bookId: Int): Response<Any>
 
 }

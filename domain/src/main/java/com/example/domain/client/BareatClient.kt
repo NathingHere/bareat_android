@@ -1,12 +1,14 @@
 package com.example.domain.client
 
 import com.example.data.*
-import com.example.data.torecieve.RegisterResponse
-import com.example.data.tosend.RegisterBody
+import com.example.data.torecieve.*
+import com.example.data.tosend.*
 
 interface BareatClient {
 
     suspend fun doRegister(registerBody: RegisterBody): Either<String, RegisterResponse>
+
+    suspend fun doLogin(loginBody: LoginBody): Either<String, LoginResponse>
 
     suspend fun getRestaurantList(isMock: Boolean = false): Either<String, List<Restaurant>>
 
@@ -16,4 +18,15 @@ interface BareatClient {
 
     suspend fun getImageList(id: Int): Either<String, List<Image>>
 
+    suspend fun getBookList(id: Int): Either<String, List<DataBook>>
+
+    suspend fun rateRestaurant(userId: Int, restaurantId: Int, rateRestaurantBody: RateRestaurantBody): Either<String, RateRestaurantResponse>
+
+    suspend fun bookRestaurant(userId: Int, restaurantId: Int, bookBody: BookBody): Either<String, BookResponse>
+
+    suspend fun rateDish(userId: Int, dishId: Int, rateDishBody: RateDishBody): Either<String, RateDishResponse>
+
+    suspend fun getCommentListDish(dishId: Int): Either<String, List<ReviewDish>>
+
+    suspend fun deleteBook(userId: Int, bookId: Int): Either<String, Any>
 }

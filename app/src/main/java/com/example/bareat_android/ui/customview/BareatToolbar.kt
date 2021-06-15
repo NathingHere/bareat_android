@@ -23,6 +23,10 @@ class BareatToolbar @JvmOverloads constructor(
         object HomeItemRated : ToolbarItemMenu()
         object HomeItemAlphabetically : ToolbarItemMenu()
         object ProfileItem : ToolbarItemMenu()
+        object SearchItemEmpty : ToolbarItemMenu()
+        object SearchItemRestaurant : ToolbarItemMenu()
+        object SearchItemCafe : ToolbarItemMenu()
+        object SearchItemBar : ToolbarItemMenu()
     }
 
     init {
@@ -37,6 +41,10 @@ class BareatToolbar @JvmOverloads constructor(
             ToolbarItemMenu.HomeItemRated -> setToolbarMenu(R.menu.home_menu_rated)
             ToolbarItemMenu.HomeItemAlphabetically -> setToolbarMenu(R.menu.home_menu_alphabetically)
             ToolbarItemMenu.ProfileItem -> setToolbarMenu(R.menu.profile_menu)
+            ToolbarItemMenu.SearchItemEmpty -> setToolbarMenu(R.menu.search_menu_empty)
+            ToolbarItemMenu.SearchItemRestaurant -> setToolbarMenu(R.menu.search_menu_restaurant)
+            ToolbarItemMenu.SearchItemCafe -> setToolbarMenu(R.menu.search_menu_cafe)
+            ToolbarItemMenu.SearchItemBar -> setToolbarMenu(R.menu.search_menu_bar)
         }
     }
 
@@ -56,7 +64,11 @@ class BareatToolbar @JvmOverloads constructor(
         onPopularityClick: () -> Unit = {},
         onRatedClick: () -> Unit = {},
         onAlphabeticalClick: () -> Unit = {},
-        onSettingsClick: () -> Unit = {}
+        onSettingsClick: () -> Unit = {},
+        onNothingClick: () -> Unit = {},
+        onRestaurantClick: () -> Unit = {},
+        onBarClick: () -> Unit = {},
+        onCafeClick: () -> Unit = {}
     ) {
 
         setOnMenuItemClickListener {
@@ -75,6 +87,22 @@ class BareatToolbar @JvmOverloads constructor(
                 }
                 R.id.settings_item -> {
                     onSettingsClick.invoke()
+                    true
+                }
+                R.id.nothing -> {
+                    onNothingClick.invoke()
+                    true
+                }
+                R.id.bar -> {
+                    onBarClick.invoke()
+                    true
+                }
+                R.id.restaurant -> {
+                    onRestaurantClick.invoke()
+                    true
+                }
+                R.id.cafe -> {
+                    onCafeClick.invoke()
                     true
                 }
                 else -> true

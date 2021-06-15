@@ -16,7 +16,7 @@ data class Restaurant (
     @SerializedName("longitud") val longitude: Double?,
     @SerializedName("tipo_establecimiento") val type: String?,
     @SerializedName("maximo_numero_comensales") val capacity: Int?,
-    @SerializedName("puntuacion_media_establecimiento") val rating : Float?,
+    @SerializedName("puntuacion_media_establecimiento") val rating : Int?,
     @SerializedName("es_premium") val isPremium : Boolean?,
         @SerializedName("email") val email : String?,
         @SerializedName("num_telefono") val phone : Int?
