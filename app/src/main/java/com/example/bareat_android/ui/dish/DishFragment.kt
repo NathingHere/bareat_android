@@ -10,6 +10,7 @@ import androidx.navigation.fragment.navArgs
 import coil.load
 import com.example.bareat_android.R
 import com.example.bareat_android.databinding.FragmentDishBinding
+import com.example.bareat_android.setup.extensions.gone
 import com.example.bareat_android.setup.extensions.initVerticalRecycler
 import com.example.bareat_android.setup.extensions.visible
 import com.example.bareat_android.ui.adapter.ReviewAdapter
@@ -139,7 +140,19 @@ class DishFragment : BaseFragment<FragmentDishBinding>() {
                     commentYes.setOnClickListener {
                         if(inputComment.text.isNotEmpty()) {
                             prefs.id?.toInt()?.let { it1 -> dishViewModel.rateDish(it1, args.currentDish.id, RateDishBody(commentRating, inputComment.text.toString())) }
-                            reviewList += listOf(ReviewDish(0,commentRating.toFloat(), inputComment.text.toString()))
+                            if (::reviewList.isInitialized)
+                                reviewList += listOf(ReviewDish(0,commentRating.toFloat(), inputComment.text.toString(), null))
+                            else {
+                                reviewList = listOf(
+                                    ReviewDish(
+                                        0,
+                                        commentRating.toFloat(),
+                                        inputComment.text.toString(),
+                                        null
+                                    )
+                                )
+                                tvEmpty.gone()
+                            }
                             reviewListAdapter.updateList(reviewList)
                             dismiss()
                         } else showToast("Debe escribir un comentario")

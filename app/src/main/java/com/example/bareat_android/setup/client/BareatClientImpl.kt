@@ -140,5 +140,65 @@ private val mockClient: MockClient
         }
     }
 
+    override suspend fun getUserProductReviews(userId: Int): Either<String, List<ReviewDish>> {
+        return try {
+            val response = bareatService.getUserProductReviews(userId)
+            networkController.checkResponse(response)
+        } catch (e: Exception) {
+            networkController.checkException(e)
+        }
+    }
+
+    override suspend fun getUserRestaurantReviews(userId: Int): Either<String, List<ReviewRestaurant>> {
+        return try {
+            val response = bareatService.getUserRestaurantReviews(userId)
+            networkController.checkResponse(response)
+        } catch (e: Exception) {
+            networkController.checkException(e)
+        }
+    }
+
+    override suspend fun editProductReview(
+        reviewId: Int,
+        rateDishBody: RateDishBody
+    ): Either<String, Any> {
+        return try {
+            val response = bareatService.editProductReview(reviewId, rateDishBody)
+            networkController.checkResponse(response)
+        } catch (e: Exception) {
+            networkController.checkException(e)
+        }
+    }
+
+    override suspend fun editRestaurantReview(
+        reviewId: Int,
+        rateRestaurantBody: RateRestaurantBody
+    ): Either<String, Any> {
+        return try {
+            val response = bareatService.editRestaurantReview(reviewId, rateRestaurantBody)
+            networkController.checkResponse(response)
+        } catch (e: Exception) {
+            networkController.checkException(e)
+        }
+    }
+
+    override suspend fun deleteProductReview(bookId: Int): Either<String, Any> {
+        return try {
+            val response = bareatService.deleteProductReview(bookId)
+            networkController.checkResponse(response)
+        } catch (e: Exception) {
+            networkController.checkException(e)
+        }
+    }
+
+    override suspend fun deleteRestaurantReview(bookId: Int): Either<String, Any> {
+        return try {
+            val response = bareatService.deleteRestaurantReview(bookId)
+            networkController.checkResponse(response)
+        } catch (e: Exception) {
+            networkController.checkException(e)
+        }
+    }
+
 
 }

@@ -72,7 +72,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         when (state) {
             is HomeViewModel.RestaurantState.SUCCESS -> {
                 restaurantList = state.restaurantList
-                restaurantAdapter.updateList(state.restaurantList)
+                val sortedList = restaurantList.sortedByDescending { it.popularity }
+                restaurantAdapter.updateList(sortedList)
+                restaurantAdapter.updateList(sortedList)
             }
             is HomeViewModel.RestaurantState.ERROR -> showToast(state.errorMessage)
         }
@@ -91,6 +93,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     private fun popularityList() {
         binding.tvFilter.text = getString(R.string.popularity)
+        val sortedList = restaurantList.sortedByDescending { it.popularity }
+        restaurantAdapter.updateList(sortedList)
         provideToolbar().initToolbar(BareatToolbar.ToolbarItemMenu.HomeItemHot)
     }
 

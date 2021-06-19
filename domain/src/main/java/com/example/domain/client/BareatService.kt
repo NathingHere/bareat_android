@@ -48,4 +48,22 @@ interface BareatService {
     @DELETE("api/usuario/{userId}/reservas/{bookId}")
     suspend fun deleteBook(@Path("userId") userId: Int, @Path("bookId") bookId: Int): Response<Any>
 
+    @GET("api/usuario/{userId}/puntuaciones_productos")
+    suspend fun getUserProductReviews(@Path("userId") userId: Int): Response<List<ReviewDish>>
+
+    @GET("api/usuario/{userId}/puntuaciones_establecimientos")
+    suspend fun getUserRestaurantReviews(@Path("userId") userId: Int): Response<List<ReviewRestaurant>>
+
+    @PATCH("api/puntuaciones_productos/{reviewId}")
+    suspend fun editProductReview(@Path("reviewId") reviewId: Int, @Body rateDishBody: RateDishBody): Response<Any>
+
+    @PATCH("api/puntuaciones_establecimientos/{reviewId}")
+    suspend fun editRestaurantReview(@Path("reviewId") reviewId: Int, @Body rateRestaurantBody: RateRestaurantBody): Response<Any>
+
+    @DELETE("api/puntuaciones_productos/{bookId}")
+    suspend fun deleteProductReview(@Path("bookId") bookId: Int): Response<Any>
+
+    @DELETE("api/puntuaciones_establecimientos/{bookId}")
+    suspend fun deleteRestaurantReview(@Path("bookId") bookId: Int): Response<Any>
+
 }

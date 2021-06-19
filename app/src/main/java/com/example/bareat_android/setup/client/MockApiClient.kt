@@ -14,15 +14,15 @@ class MockApiClient : MockClient {
 
 
     private val mockRestaurantList = listOf(
-        Restaurant(1, "dfsfggdsfdcg","qweqweqw", "https://media-cdn.tripadvisor.com/media/photo-s/1a/b8/46/6d/london-stock.jpg", "qweqqw qweqwe", 2.323, 2.23, "restaurante", 120, 5, true, "qwerty@gmail.com", 123456789),
-        Restaurant(1,"basdkasl;djlkjer", "qweqweqw", "https://media-cdn.tripadvisor.com/media/photo-s/1a/b8/46/6d/london-stock.jpg", "qweqqw qweqwe", 2.323, 2.23, "restaurante", 120, 5, false, "qwerty@gmail.com", 123456789),
-        Restaurant(2,"clkasjdjklher l", "qweqweqw", "https://media-cdn.tripadvisor.com/media/photo-s/1a/b8/46/6d/london-stock.jpg", "qweqqw qweqwe", 2.323, 2.23, "restaurante", 120, 5, true, "qwerty@gmail.com", 123456789),
-        Restaurant(3,"qweerwwedf", "qweqweqw", "https://media-cdn.tripadvisor.com/media/photo-s/1a/b8/46/6d/london-stock.jpg", "qweqqw qweqwe", 2.323, 2.23, "restaurante", 120, 5, true, "qwerty@gmail.com", 123456789),
-        Restaurant(4,"qweerwwedf", "qweqweqw", "https://media-cdn.tripadvisor.com/media/photo-s/1a/b8/46/6d/london-stock.jpg", "qweqqw qweqwe", 2.323, 2.23, "restaurante", 120, 5, true, "qwerty@gmail.com", 123456789),
-        Restaurant(5,"isdhjakeghw adkj asd", "qweqweqw", "https://media-cdn.tripadvisor.com/media/photo-s/1a/b8/46/6d/london-stock.jpg", "qweqqw qweqwe", 2.323, 2.23, "restaurante", 120, 5, true, "qwerty@gmail.com", 123456789),
-        Restaurant(6,"qweerwwedf", "qweqweqw", "https://media-cdn.tripadvisor.com/media/photo-s/1a/b8/46/6d/london-stock.jpg", "qweqqw qweqwe", 2.323, 2.23, "restaurante", 120, 5, true, "qwerty@gmail.com", 123456789),
-        Restaurant(7,"abasdasdasdasr", "qweqweqw", "https://media-cdn.tripadvisor.com/media/photo-s/1a/b8/46/6d/london-stock.jpg", "qweqqw qweqwe", 2.323, 2.23, "restaurante", 120, 5, true, "qwerty@gmail.com", 123456789),
-        Restaurant(8,"qweerwwedf", "qweqweqw", "https://media-cdn.tripadvisor.com/media/photo-s/1a/b8/46/6d/london-stock.jpg", "qweqqw qweqwe", 2.323, 2.23, "restaurante", 120, 5, true, "qwerty@gmail.com", 123456789)
+        Restaurant(1, "dfsfggdsfdcg","qweqweqw", "https://media-cdn.tripadvisor.com/media/photo-s/1a/b8/46/6d/london-stock.jpg", "qweqqw qweqwe", 2.323, 2.23, "restaurante", 120, 5, true, "qwerty@gmail.com", 123456789, 0),
+        Restaurant(1,"basdkasl;djlkjer", "qweqweqw", "https://media-cdn.tripadvisor.com/media/photo-s/1a/b8/46/6d/london-stock.jpg", "qweqqw qweqwe", 2.323, 2.23, "restaurante", 120, 5, false, "qwerty@gmail.com", 123456789, 0),
+        Restaurant(2,"clkasjdjklher l", "qweqweqw", "https://media-cdn.tripadvisor.com/media/photo-s/1a/b8/46/6d/london-stock.jpg", "qweqqw qweqwe", 2.323, 2.23, "restaurante", 120, 5, true, "qwerty@gmail.com", 123456789, 0),
+        Restaurant(3,"qweerwwedf", "qweqweqw", "https://media-cdn.tripadvisor.com/media/photo-s/1a/b8/46/6d/london-stock.jpg", "qweqqw qweqwe", 2.323, 2.23, "restaurante", 120, 5, true, "qwerty@gmail.com", 123456789, 0),
+        Restaurant(4,"qweerwwedf", "qweqweqw", "https://media-cdn.tripadvisor.com/media/photo-s/1a/b8/46/6d/london-stock.jpg", "qweqqw qweqwe", 2.323, 2.23, "restaurante", 120, 5, true, "qwerty@gmail.com", 123456789, 0),
+        Restaurant(5,"isdhjakeghw adkj asd", "qweqweqw", "https://media-cdn.tripadvisor.com/media/photo-s/1a/b8/46/6d/london-stock.jpg", "qweqqw qweqwe", 2.323, 2.23, "restaurante", 120, 5, true, "qwerty@gmail.com", 123456789, 0),
+        Restaurant(6,"qweerwwedf", "qweqweqw", "https://media-cdn.tripadvisor.com/media/photo-s/1a/b8/46/6d/london-stock.jpg", "qweqqw qweqwe", 2.323, 2.23, "restaurante", 120, 5, true, "qwerty@gmail.com", 123456789, 0),
+        Restaurant(7,"abasdasdasdasr", "qweqweqw", "https://media-cdn.tripadvisor.com/media/photo-s/1a/b8/46/6d/london-stock.jpg", "qweqqw qweqwe", 2.323, 2.23, "restaurante", 120, 5, true, "qwerty@gmail.com", 123456789, 0),
+        Restaurant(8,"qweerwwedf", "qweqweqw", "https://media-cdn.tripadvisor.com/media/photo-s/1a/b8/46/6d/london-stock.jpg", "qweqqw qweqwe", 2.323, 2.23, "restaurante", 120, 5, true, "qwerty@gmail.com", 123456789, 0)
         )
 
     private val mockDishList = listOf(
@@ -39,12 +39,12 @@ class MockApiClient : MockClient {
             )
 
     private val mockReviewList = listOf(
-            ReviewRestaurant(1, 4.43F, "asdjalikfj lajlkdfsh asdkljfh sdfsjfkg fsdgkjahlkjlsdfg kjdafhkj ldfh ksjdfjkh lsdfkhj sdfkjhl sdfjk hlsdfjkhl dsf"),
-            ReviewRestaurant(2, 2.43F, "asdjalikfj lajlkdfsh asdkljfh sdfsjfkg fsdgkjahlkjlsdfg kjdafhkj ldfh ksjdfjkh lsdfkhj sdfkjhl sdfjk hlsdfjkhl dsf"),
-            ReviewRestaurant(3, 1.43F, "asdjalikfj lajlkdfsh asdkljfh sdfsjfkg fsdgkjahlkjlsdfg kjdafhkj ldfh ksjdfjkh lsdfkhj sdfkjhl sdfjk hlsdfjkhl dsf"),
-            ReviewRestaurant(4, 4F, "asdjalikfj lajlkdfsh asdkljfh sdfsjfkg fsdgkjahlkjlsdfg kjdafhkj ldfh ksjdfjkh lsdfkhj sdfkjhl sdfjk hlsdfjkhl dsf"),
-            ReviewRestaurant(5, 0.43F, "asdjalikfj lajlkdfsh asdkljfh sdfsjfkg fsdgkjahlkjlsdfg kjdafhkj ldfh ksjdfjkh lsdfkhj sdfkjhl sdfjk hlsdfjkhl dsf"),
-            ReviewRestaurant(6, 3.43F, "asdjalikfj lajlkdfsh asdkljfh sdfsjfkg fsdgkjahlkjlsdfg kjdafhkj ldfh ksjdfjkh lsdfkhj sdfkjhl sdfjk hlsdfjkhl dsf"),
+            ReviewRestaurant(1, 4.43F, "asdjalikfj lajlkdfsh asdkljfh sdfsjfkg fsdgkjahlkjlsdfg kjdafhkj ldfh ksjdfjkh lsdfkhj sdfkjhl sdfjk hlsdfjkhl dsf", null),
+            ReviewRestaurant(2, 2.43F, "asdjalikfj lajlkdfsh asdkljfh sdfsjfkg fsdgkjahlkjlsdfg kjdafhkj ldfh ksjdfjkh lsdfkhj sdfkjhl sdfjk hlsdfjkhl dsf", null),
+            ReviewRestaurant(3, 1.43F, "asdjalikfj lajlkdfsh asdkljfh sdfsjfkg fsdgkjahlkjlsdfg kjdafhkj ldfh ksjdfjkh lsdfkhj sdfkjhl sdfjk hlsdfjkhl dsf", null),
+            ReviewRestaurant(4, 4F, "asdjalikfj lajlkdfsh asdkljfh sdfsjfkg fsdgkjahlkjlsdfg kjdafhkj ldfh ksjdfjkh lsdfkhj sdfkjhl sdfjk hlsdfjkhl dsf", null),
+            ReviewRestaurant(5, 0.43F, "asdjalikfj lajlkdfsh asdkljfh sdfsjfkg fsdgkjahlkjlsdfg kjdafhkj ldfh ksjdfjkh lsdfkhj sdfkjhl sdfjk hlsdfjkhl dsf", null),
+            ReviewRestaurant(6, 3.43F, "asdjalikfj lajlkdfsh asdkljfh sdfsjfkg fsdgkjahlkjlsdfg kjdafhkj ldfh ksjdfjkh lsdfkhj sdfkjhl sdfjk hlsdfjkhl dsf", null),
 
     )
 

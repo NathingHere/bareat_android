@@ -34,10 +34,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                 onLoginPressed()
             }
 
-            tvForgot.setOnClickListener {
-
-            }
-
             btnBack.setOnClickListener {
                 navController?.navigate(routeToOnboarding())
             }

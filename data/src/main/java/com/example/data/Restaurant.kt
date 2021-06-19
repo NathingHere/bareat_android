@@ -19,5 +19,6 @@ data class Restaurant (
     @SerializedName("puntuacion_media_establecimiento") val rating : Int?,
     @SerializedName("es_premium") val isPremium : Boolean?,
         @SerializedName("email") val email : String?,
-        @SerializedName("num_telefono") val phone : Int?
+        @SerializedName("num_telefono") val phone : Int?,
+        @SerializedName("total_puntuaciones") val popularity : Int?,
         ) : Parcelable, JSONConvertable

@@ -12,5 +12,6 @@ data class DataBook (
     @SerializedName("num_comensales") val num: Int?,
     @SerializedName("fecha") val date: String?,
     @SerializedName("hora") val hour: String?,
-    @SerializedName("id") val id: Int?
+    @SerializedName("id") val id: Int?,
+    @SerializedName("establecimiento") val restaurant: Restaurant?
 ) : Parcelable, JSONConvertable

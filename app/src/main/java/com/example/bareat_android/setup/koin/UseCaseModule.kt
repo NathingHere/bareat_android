@@ -5,7 +5,7 @@ import com.example.domain.usecase.dish.GetDishListUseCase
 import com.example.domain.usecase.dish.RateDishUseCase
 import com.example.domain.usecase.onboarding.DoLoginUseCase
 import com.example.domain.usecase.onboarding.DoRegisterUseCase
-import com.example.domain.usecase.profile.GetBookListUseCase
+import com.example.domain.usecase.profile.*
 import com.example.domain.usecase.restaurant.*
 import com.example.domain.usecase.review.GetReviewListUseCase
 import org.koin.dsl.module
@@ -33,5 +33,10 @@ val useCaseModule = module {
 
     //PROFILE
     factory { GetBookListUseCase(get()) }
-
+    factory { GetUserProductReviewsUseCase(get()) }
+    factory { GetUserRestaurantReviewsUseCase(get()) }
+    factory { EditProductReviewUseCase(get()) }
+    factory { EditRestaurantReviewUseCase(get()) }
+    factory { DeleteRestaurantReviewUseCase(get()) }
+    factory { DeleteProductReviewUseCase(get()) }
 }

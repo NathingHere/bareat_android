@@ -64,6 +64,7 @@
     <string name="empty_comments">No hay reseñas</string>
     <string name="empty_list">No hay resultados</string>
     <string name="empty_book">No tienes ninguna reserva</string>
+    <string name="empty_review">No tienes ninguna reseña</string>
     <string name="logout_title">Cerrar sesión</string>
     <string name="logout_subtitle">¿Estás seguro de que quieres cerrar sesión?</string>
 

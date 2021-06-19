@@ -7,8 +7,9 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class ReviewDish (
-        @SerializedName("id") val id: Int,
+    @SerializedName("id") val id: Int,
         //@SerializedName("") val name: String?,
-        @SerializedName("puntuacion_producto") val rating: Float?,
-        @SerializedName("comentario") val comment: String?,
+    @SerializedName("puntuacion_producto") var rating: Float?,
+    @SerializedName("comentario") var comment: String?,
+    @SerializedName("producto") val dish: Dish?
         ) : Parcelable, JSONConvertable

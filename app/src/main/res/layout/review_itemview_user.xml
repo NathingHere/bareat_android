@@ -23,7 +23,7 @@
 
             <TextView
                 android:id="@+id/tvName"
-                android:layout_width="175dp"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
@@ -34,7 +34,7 @@
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_max="225dp"
+                app:layout_constraintWidth_max="300dp"
                 tools:text="Javier Lopez Jimenez" />
 
             <RatingBar
@@ -42,11 +42,11 @@
                 style="@android:style/Widget.DeviceDefault.Light.RatingBar.Small"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
-                android:layout_marginEnd="32dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="48dp"
                 android:scaleX="1.5"
                 android:scaleY="1.5"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -62,8 +62,30 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvName"
+                app:layout_constraintTop_toBottomOf="@+id/ratingBar"
                 tools:text="Esto es una review asd as das da sd ada sdasdasd ad ada d asda sd asd asd as d" />
+
+            <ImageView
+                android:id="@+id/btnEdit"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="32dp"
+                app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
+                app:layout_constraintStart_toEndOf="@+id/ratingBar"
+                app:layout_constraintTop_toTopOf="@+id/ratingBar"
+                app:srcCompat="@drawable/ic_edit"
+                app:tint="@color/colorPrimaryDark" />
+
+            <ImageView
+                android:id="@+id/btnDelete"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_close"
+                app:tint="@color/bareat_red" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

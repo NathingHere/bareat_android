@@ -19,15 +19,12 @@ import com.example.bareat_android.ui.base.BaseFragment
 import com.deishelon.roundedbottomsheet.RoundedBottomSheetDialog
 import com.example.bareat_android.databinding.DishItemviewBinding
 import com.example.bareat_android.databinding.ReviewItemviewBinding
-import com.example.bareat_android.setup.extensions.initHorizontalRecycler
-import com.example.bareat_android.setup.extensions.initVerticalRecycler
-import com.example.bareat_android.setup.extensions.visible
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.example.bareat_android.databinding.ViewpagerImageBinding
-import com.example.bareat_android.setup.extensions.logD
+import com.example.bareat_android.setup.extensions.*
 import com.example.bareat_android.ui.adapter.ReviewAdapter
 import com.example.bareat_android.ui.base.BaseRecyclerView
 import com.example.bareat_android.ui.base.BaseViewHolder
@@ -301,7 +298,19 @@ class RestaurantFragment : BaseFragment<FragmentRestaurantBinding>(), OnMapReady
                     commentYes.setOnClickListener {
                         if(inputComment.text.isNotEmpty()) {
                             prefs.id?.toInt()?.let { it1 -> restaurantViewModel.rateRestaurant(it1, args.currentRestaurant.id, RateRestaurantBody(commentRating, inputComment.text.toString())) }
-                            reviewList += listOf(ReviewRestaurant(0,commentRating.toFloat(), inputComment.text.toString()))
+                            if (::reviewList.isInitialized)
+                                reviewList += listOf(ReviewRestaurant(0,commentRating.toFloat(), inputComment.text.toString(), null))
+                            else {
+                                reviewList = listOf(
+                                    ReviewRestaurant(
+                                        0,
+                                        commentRating.toFloat(),
+                                        inputComment.text.toString(),
+                                        null
+                                    )
+                                )
+                                tvEmpty.gone()
+                            }
                             reviewListAdapter.updateList(reviewList)
                             dismiss()
                         } else showToast("Debe escribir un comentario")

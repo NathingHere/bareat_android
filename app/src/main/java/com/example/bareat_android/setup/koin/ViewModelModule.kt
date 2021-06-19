@@ -18,6 +18,6 @@ val viewModelModule = module {
     viewModel { RestaurantViewModel(get(), get(), get(), get(), get()) }
     viewModel { DishViewModel(get(), get()) }
     viewModel { SearchViewModel(get()) }
-    viewModel { ProfileViewModel(get(), get()) }
+    viewModel { ProfileViewModel(get(), get(), get(), get(), get(), get(), get(), get()) }
 
 }

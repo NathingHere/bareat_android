@@ -39,6 +39,9 @@
         <action
             android:id="@+id/route_to_restaurant"
             app:destination="@id/restaurantFragment" />
+        <action
+            android:id="@+id/route_to_dish"
+            app:destination="@id/dishFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"

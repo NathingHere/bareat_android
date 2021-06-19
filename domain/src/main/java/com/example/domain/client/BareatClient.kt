@@ -29,4 +29,16 @@ interface BareatClient {
     suspend fun getCommentListDish(dishId: Int): Either<String, List<ReviewDish>>
 
     suspend fun deleteBook(userId: Int, bookId: Int): Either<String, Any>
+
+    suspend fun getUserProductReviews(userId: Int): Either<String, List<ReviewDish>>
+
+    suspend fun getUserRestaurantReviews(userId: Int): Either<String, List<ReviewRestaurant>>
+
+    suspend fun editProductReview(reviewId: Int, rateDishBody: RateDishBody): Either<String, Any>
+
+    suspend fun editRestaurantReview(reviewId: Int, rateRestaurantBody: RateRestaurantBody): Either<String, Any>
+
+    suspend fun deleteProductReview(bookId: Int): Either<String, Any>
+
+    suspend fun deleteRestaurantReview(bookId: Int): Either<String, Any>
 }
