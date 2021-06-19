@@ -88,6 +88,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         binding.tvFilter.text = getString(R.string.alphabetically)
         val sortedList = restaurantList.sortedBy { it.name }
         restaurantAdapter.updateList(sortedList)
+        binding.scrollView.smoothScrollTo(0, 0)
         provideToolbar().initToolbar(BareatToolbar.ToolbarItemMenu.HomeItemAlphabetically)
     }
 
@@ -95,6 +96,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         binding.tvFilter.text = getString(R.string.popularity)
         val sortedList = restaurantList.sortedByDescending { it.popularity }
         restaurantAdapter.updateList(sortedList)
+        binding.scrollView.smoothScrollTo(0, 0)
         provideToolbar().initToolbar(BareatToolbar.ToolbarItemMenu.HomeItemHot)
     }
 
@@ -102,7 +104,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         binding.tvFilter.text = getString(R.string.rated)
         val sortedList = restaurantList.sortedByDescending { it.rating }
         restaurantAdapter.updateList(sortedList)
-
+        binding.scrollView.smoothScrollTo(0, 0)
         provideToolbar().initToolbar(BareatToolbar.ToolbarItemMenu.HomeItemRated)
     }
 
